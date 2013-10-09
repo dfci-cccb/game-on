@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele" id="ff_edu_dfci_cccb_gameon_domain_SnpRow" path="/snprows" z="r0sObDRoSrRyLelkzBgyTyvhWL4=">
+        <field:input disableFormBinding="true" field="build" id="f_edu_dfci_cccb_gameon_domain_SnpRow_build" required="true" z="oOqPBu0TvliatjYGY7gRlLSml/c="/>
+        <field:input disableFormBinding="true" field="strand" id="f_edu_dfci_cccb_gameon_domain_SnpRow_strand" required="true" z="6uqMlAJHsMP0l3mj42XpT+xhd5k="/>
+        <field:input disableFormBinding="true" field="nStudy" id="f_edu_dfci_cccb_gameon_domain_SnpRow_nStudy" required="true" z="GMiLWVsPOK2ZfnNkACYU8DvQTRE="/>
+        <field:input disableFormBinding="true" field="effectAllele" id="f_edu_dfci_cccb_gameon_domain_SnpRow_effectAllele" required="true" z="lHK0S9GNMEP2R6bQDF6dely5W7o="/>
+        <field:input disableFormBinding="true" field="refAllele" id="f_edu_dfci_cccb_gameon_domain_SnpRow_refAllele" required="true" z="ziWnxThWihHpalWZngYFFziTlrE="/>
+    </form:find>
+</div>

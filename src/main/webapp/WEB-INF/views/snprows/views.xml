@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="snprows/list">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/list.jspx"/>
+    </definition>
+<definition extends="default" name="snprows/show">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/show.jspx"/>
+    </definition>
+<definition extends="default" name="snprows/create">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/create.jspx"/>
+    </definition>
+<definition extends="default" name="snprows/update">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/update.jspx"/>
+    </definition>
+<definition extends="default" name="snprows/findSnpRowsByBuildEquals">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/findSnpRowsByBuildEquals.jspx"/>
+    </definition>
+<definition extends="default" name="snprows/findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele.jspx"/>
+    </definition>
+<definition extends="default" name="snprows/findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAlleleAndMarkerNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/snprows/findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAlleleAndMarkerNameLike.jspx"/>
+    </definition>
+</tiles-definitions>

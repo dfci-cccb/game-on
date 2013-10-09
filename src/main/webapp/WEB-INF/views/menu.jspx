@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page import="java.net.URLEncoder"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:directive.page isELIgnored="false"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+	<!-- 
+    <div id="menu" version="2.0">
+        <ul id="_menu">
+            <li id="c_snprow">
+                <menu:item id="i_snprow_list" messageCode="global_menu_list" url="/snprows?page=1&amp;size=${empty param.size ? 10 : param.size}" z="taaAxx7INAOOOJzCli8smLZKe/Q="/>
+                <menu:item id="fi_snprow_buildandstrandandnstudyandeffectalleleandrefallele" messageCode="global_menu_find" url="/snprows?find=ByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele&amp;form" z="pDqXyU3A4yD0nX96gRz4songWCU="/>
+                <menu:item id="fi_snprow_buildequals" messageCode="global_menu_find" url="/snprows?find=ByBuildEquals&amp;form" z="zyqAZVzcgZtP4tV55fRGupKCAyE="/>
+                <menu:item id="i_snprow_new" messageCode="global_menu_new" url="/snprows?form" z="2jpK33oK6rm3WrE4SA3z2ROwdjg="/>
+                <menu:item id="fi_snprow_buildandstrandandnstudyandeffectalleleandrefalleleandmarkernamelike" messageCode="global_menu_find" url="/snprows?find=ByBuildAndStrandAndNStudyAndEffectAlleleAndRefAlleleAndMarkerNameLike&amp;form" z="LsLhfLfISuirgGyG/vjeu8FRaUE="/>
+            </li>
+        </ul>
+    </div>
+    -->
+    <div class="snp" xmlns:f="http://www.springframework.org/tags/form" xmlns:h="http://struts.apache.org/tags-html" id="menu" version="2.0">
+        <ul id="_menu" >
+            <li id="c_snprow">
+                <h2>Filter Selection</h2>                
+                <form method="GET">
+                    <input name="find" type="hidden" value="generic"/>
+                    <input name="page" type="hidden" value="${param['page']}"/>
+                    <input name="size" type="hidden" value="${param['size']}"/>
+                    
+                    <input name="markerName" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}" onblur="if(value=='') value = 'Enter Marker Names'" onfocus="if(value=='Enter Marker Names') value = ''"/>
+                    <br/>
+                    <select id="build" name="build">
+                        <option value="">Any Build</option>
+                        <c:forEach items="${builds}" var="build">
+                            <c:choose>
+                                <c:when test="${param['build'] eq build}">
+                                    <option selected="true" value="${build}">${build}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${build}">${build}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                    <br/>
+                    <!--select id="strand" name="strand">
+                        <option value="">Any Strand</option>
+                        <c:forEach items="${strands}" var="strand">
+                            <c:choose>
+                                <c:when test="${param['strand'] eq strand}">
+                                    <option selected="true" value="${strand}">${strand}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${strand}">${strand}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                    <br/-->
+                    <select id="nstudy" name="NStudy">
+                        <option value="">Any NStudy</option>
+                        <c:forEach items="${nstudies}" var="nstudy">
+                            <c:choose>
+                                <c:when test="${param['NStudy'] eq nstudy}">
+                                    <option selected="true" value="${nstudy}">${nstudy}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${nstudy}">${nstudy}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                    <br/>
+                    <select id="effectAllele" name="effectAllele">
+                        <option value="">Any Effect Allele</option>
+                        <c:forEach items="${effectAlleles}" var="effectAllele">
+                            <c:choose>
+                                <c:when test="${param['effectAllele'] eq effectAllele}">
+                                    <option selected="true" value="${effectAllele}">${effectAllele}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${effectAllele}">${effectAllele}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                    <br/>
+                    <select id="refAllele" name="refAllele">
+                        <option value="">Any Ref Allele</option>
+                        <c:forEach items="${refAlleles}" var="refAllele">
+                            <c:choose>
+                                <c:when test="${param['refAllele'] eq refAllele}">
+                                    <option selected="true" value="${refAllele}">${refAllele}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${refAllele}">${refAllele}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                    <br/>
+                    <select id="chromosome" name="chromosome" onchange="if(document.getElementById('any_chromosome').selected){document.getElementById('coordinateBox1').setAttribute('disabled', 'true');document.getElementById('coordinateBox2').setAttribute('disabled', 'true');}else{document.getElementById('coordinateBox1').removeAttribute('disabled');document.getElementById('coordinateBox2').removeAttribute('disabled');}">
+                        <option value="" id="any_chromosome">Any Chromosome</option>
+                        <c:forEach items="${chromosomes}" var="chromosome">
+                            <c:choose>
+                                <c:when test="${param['chromosome'] eq chromosome}">
+                                    <option selected="true" value="${chromosome}">${chromosome}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${chromosome}">${chromosome}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                    <br/>
+                    <style>
+                    .coordinateBox {
+                      width: 40%
+                    }
+                    </style>
+                    <div><input type="text" name="coordinateLower" id="coordinateBox1" /> - <input type="text" name="coordinateUpper" id="coordinateBox2" /></div>
+                    <br/>
+                    <input onclick="javascript:if(form.markerName.value=='Enter Marker Names') form.markerName.value='';" type="submit" value="find top 100"/>
+                    <input onclick="window.location.href='/gameon/snps?find=generic&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=';" type="button" value="clear filters"/>
+                	<input onclick="window.location.href='/gameon/snps?download=generic&amp;markerName=${param['markerName'] eq 'Enter Marker Names' ? '' : param['markerName']}&amp;build=${param['build']}&amp;strand=${param['strand']}&amp;NStudy=${param['nstudy']}&amp;effectAllele=${param['effectAllele']}&amp;refAllele=${param['refAllele']}';" type="button" value="download top 100 filtered"/>                	
+                </form>
+            </li>
+        </ul>
+    </div>
+
+
+</div>

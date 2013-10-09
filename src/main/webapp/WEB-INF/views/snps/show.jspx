@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_edu_dfci_cccb_gameon_domain_Snp" object="${snp}" path="/snps" z="zPrsKKcmvnf2an+Lw/zlpDUbcbw=">
+        <field:display field="betavalue" id="s_edu_dfci_cccb_gameon_domain_Snp_betavalue" object="${snp}" z="IvxLJ7B0EeJ4kBRK7Oo7kQyPZZ8="/>
+        <field:display field="build" id="s_edu_dfci_cccb_gameon_domain_Snp_build" object="${snp}" z="yxps4mcWW4gucNBQQKbPAEmD9vA="/>
+        <field:display field="chromosome" id="s_edu_dfci_cccb_gameon_domain_Snp_chromosome" object="${snp}" z="odgZLeAnAD6oovOZe6m0olh3M98="/>
+        <field:display field="coordinate" id="s_edu_dfci_cccb_gameon_domain_Snp_coordinate" object="${snp}" z="WjN+/SkTPdbSHCDnVVUVFdPNSQs="/>
+        <field:display field="eafUkValue" id="s_edu_dfci_cccb_gameon_domain_Snp_eafUkValue" object="${snp}" z="TVKKm4N/qzqL8bsVxRipzq3sAtM="/>
+        <field:display field="effectAllele" id="s_edu_dfci_cccb_gameon_domain_Snp_effectAllele" object="${snp}" z="YBwyv7te8aaCccKTPSIP4pxZ6jg="/>
+        <field:display field="LCiValue" id="s_edu_dfci_cccb_gameon_domain_Snp_lCiValue" object="${snp}" z="ZqxNAgCUS0miDOg4rVJGjinf9CU="/>
+        <field:display field="markerName" id="s_edu_dfci_cccb_gameon_domain_Snp_markerName" object="${snp}" z="dSZpnbAP6avFmKGNAw/zTtngiJ8="/>
+        <field:display field="NStudy" id="s_edu_dfci_cccb_gameon_domain_Snp_nStudy" object="${snp}" z="nXTxBEo4qUXBz2eOz/PI3Pfuxjo="/>
+        <field:display field="orValue" id="s_edu_dfci_cccb_gameon_domain_Snp_orValue" object="${snp}" z="FCGUhY247/nDWe7GFR4QehnDTfw="/>
+        <field:display field="PValue" id="s_edu_dfci_cccb_gameon_domain_Snp_pValue" object="${snp}" z="OgdbXj8/79zuF0KjdIQ6B+IFKZM="/>
+        <field:display field="refAllele" id="s_edu_dfci_cccb_gameon_domain_Snp_refAllele" object="${snp}" z="4ry/zcTr2XWQMm5dc8JaJkaln24="/>
+        <field:display field="rsNumber" id="s_edu_dfci_cccb_gameon_domain_Snp_rsNumber" object="${snp}" z="U99IhCJXbzeXsKsQ6T/GFuZXWDA="/>
+        <field:display field="seValue" id="s_edu_dfci_cccb_gameon_domain_Snp_seValue" object="${snp}" z="dMQ3/RpplcYsrXN2/8YKddTFuNM="/>
+        <field:display field="strand" id="s_edu_dfci_cccb_gameon_domain_Snp_strand" object="${snp}" z="6Egxv2yxkQgBOiEZdZqK46gICks="/>
+        <field:display field="geneInfo" id="s_edu_dfci_cccb_gameon_domain_Snp_geneInfo" object="${snp}" z="w1Qni5v3IrCvsgXThfHcU7vxAX4="/>
+        <field:display field="UCiValue" id="s_edu_dfci_cccb_gameon_domain_Snp_uCiValue" object="${snp}" z="FZ0TZlnp43X5RqT8TqGqUZVrBxc="/>
+    </page:show>
+</div>

@@ -1,0 +1,83 @@
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-07 12:14:35
+hint
+project --topLevelPackage edu.dfci.cccb.gameon
+hint 
+jpa setup --provider HIBERNATE --database H2_IN_MEMORY 
+hint
+entity jpa --class edu.dfci.cccb.gameon.domain.SnpRow --testAutomatically 
+hint
+field string --fieldName markerName --notNull
+field string --fieldName rsNumber --notNull 
+field string --fieldName coordinate --notNull 
+field string --fieldName build --notNull 
+field string --fieldName strand --notNull 
+field string --fieldName nStudy --notNull 
+field string --fieldName effectAllele --notNull 
+field string --fieldName refAllele --notNull 
+field number --fieldName eafUK --type java.lang.Double
+field number --fieldName beta --type java.lang.Double
+field number --fieldName se --type java.lang.Double
+field number --fieldName orSnp --type java.lang.Double
+field number --fieldName lCi --type java.lang.Double
+field number --fieldName uCi --type java.lang.Double
+field number --fieldName pValue --type java.lang.Double
+perform tests
+perform eclipse
+web mvc setup 
+web mvc all --package edu.dfci.cccb.gameon.web
+hint
+security setup
+selenium test --controller ~.web.SnpRowController
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-07 14:23:29
+finder list --class ~.domain.SnpRow
+finder list --class ~.domain.SnpRow --filter build
+finder list --class ~.domain.SnpRow --filter build,equ
+finder list --class ~.domain.SnpRow --filter build
+finder add --finderName findSnpRowsByBuildEquals
+hint web mvc view
+hint web mvc
+backup
+web mvc scaffold --class ~.domain.SnpRow
+hint web mvc scaffold
+hint web mvc
+help
+// [failed] web mvc finder add --formBackingType ~.domain.SnpRow
+// [failed] web mvc finder add --formBackingType ~.web.SnpRowController
+web mvc all --package ~.web
+web mvc finder all
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-07 14:36:34
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-07 14:48:50
+finder list --class ~.domain.SnpRow
+// [failed] finder list --class ~.domain.SnpRow --depth 7
+// [failed] finder list --class ~.domain.SnpRow --depth 3
+finder add --finderName findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele 
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-07 14:53:53
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-07 15:28:50
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-07 17:09:07
+hint
+help
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-07 17:15:53
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 09:31:09
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-08 11:54:19
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 11:54:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 12:23:25
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-08 13:02:18
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 13:02:30
+finder add --class ~.domain.SnpRow --finderName findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAlleleAndMakerName
+finder list --class ~.domain.SnpRow --filter findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele
+// [failed] finder list --class ~.domain.SnpRow --filter findSnpRowsByBuildAndStrandAndNStudyAndEffectAlleleAndRefAllele --depth 6
+finder list --class ~.domain.SnpRow --filter Build,Strand,NStudy,EffectAllele,RefAllele 
+// [failed] finder list --class ~.domain.SnpRow --filter Build,Strand,NStudy,EffectAllele,RefAllele --depth 3
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-05-08 13:31:49
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-05-08 13:34:23
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-22 13:00:17
+web mvc update tags 
+web mvc all --package edu.dfci.cccb.gameon.domain
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-22 13:01:59

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_edu_dfci_cccb_gameon_domain_Snp" modelAttribute="snp" path="/snps" versionField="none" z="MJQBLXp4FcYfVi0v4iQlKYUPHaU=">
+        <field:input field="betavalue" id="c_edu_dfci_cccb_gameon_domain_Snp_betavalue" validationMessageCode="field_invalid_number" z="zXVrlwpTYKmxfJ+Usoq29KQztGA="/>
+        <field:input field="build" id="c_edu_dfci_cccb_gameon_domain_Snp_build" z="4RcRQJ9hNaM4JyrUWsp3Yish3Lo="/>
+        <field:input field="chromosome" id="c_edu_dfci_cccb_gameon_domain_Snp_chromosome" z="8ERK/vtublw06XrFSmuc2STui5M="/>
+        <field:input field="coordinate" id="c_edu_dfci_cccb_gameon_domain_Snp_coordinate" validationMessageCode="field_invalid_integer" z="Xblj4MF7xkMho/u2naenXfYO3rA="/>
+        <field:input field="eafUkValue" id="c_edu_dfci_cccb_gameon_domain_Snp_eafUkValue" validationMessageCode="field_invalid_number" z="Gob+NtjClpCOq3jfZlbK4IZSosY="/>
+        <field:input field="effectAllele" id="c_edu_dfci_cccb_gameon_domain_Snp_effectAllele" z="j3fHY32E4JZhgwBUF+FTSOJQZVM="/>
+        <field:input field="lCiValue" id="c_edu_dfci_cccb_gameon_domain_Snp_lCiValue" validationMessageCode="field_invalid_number" z="o95VBjmAkjAGKKTASbJChi5M/ag="/>
+        <field:input field="markerName" id="c_edu_dfci_cccb_gameon_domain_Snp_markerName" z="L6B0WjdnbYt9tnzd82lT1iTIa4E="/>
+        <field:input field="nStudy" id="c_edu_dfci_cccb_gameon_domain_Snp_nStudy" z="EYikHkFRxTV4haGmgTHwc59kevQ="/>
+        <field:input field="orValue" id="c_edu_dfci_cccb_gameon_domain_Snp_orValue" validationMessageCode="field_invalid_number" z="/+R2F15agU875z+iD2dOhESTme8="/>
+        <field:input field="pValue" id="c_edu_dfci_cccb_gameon_domain_Snp_pValue" validationMessageCode="field_invalid_number" z="USLOVghYnwFL6N0CBFtTAKTwWlE="/>
+        <field:input field="refAllele" id="c_edu_dfci_cccb_gameon_domain_Snp_refAllele" z="ps1poKb74Biy06kUkETU9MjCJVs="/>
+        <field:input field="rsNumber" id="c_edu_dfci_cccb_gameon_domain_Snp_rsNumber" z="g+IsQ1veTTe5SodICo+4q3iyrI4="/>
+        <field:input field="seValue" id="c_edu_dfci_cccb_gameon_domain_Snp_seValue" validationMessageCode="field_invalid_number" z="DGqm/FuXAvrBkdMXEKBxqeQe/2o="/>
+        <field:input field="strand" id="c_edu_dfci_cccb_gameon_domain_Snp_strand" z="3xZCBiMSoC/KMQcffmAms9AHwG4="/>
+        <field:input field="geneInfo" id="c_edu_dfci_cccb_gameon_domain_Snp_geneInfo" z="RlxTg6C4ABJrkGNYkBAYayMRO6g="/>
+        <field:input field="uCiValue" id="c_edu_dfci_cccb_gameon_domain_Snp_uCiValue" validationMessageCode="field_invalid_number" z="hUOjw3ycrfbUVW/HtpP8m1YxdDs="/>
+    </form:update>
+</div>
