@@ -16,7 +16,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Snp, String> ApplicationConversionServiceFactoryBean.getSnpToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<edu.dfci.cccb.gameon.domain.Snp, java.lang.String>() {
             public String convert(Snp snp) {
-                return "(no displayable fields)";
+                return new StringBuilder().append(snp.getBetavalue()).append(' ').append(snp.getBuild()).append(' ').append(snp.getChromosome()).append(' ').append(snp.getCoordinate()).toString();
             }
         };
     }

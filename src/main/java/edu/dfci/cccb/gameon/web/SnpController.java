@@ -22,6 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
@@ -54,7 +56,7 @@ public class SnpController {
     formatSearchTerms (searchTerms);
     log.debug ("search terms are " + searchTerms);
     model.addAttribute ("snps",
-                        Snp.findGeneric (searchTerms).setFirstResult (0)
+                        Snp.findGeneric(searchTerms).setFirstResult (0)
                            .setMaxResults (PAGE_SIZE).getResultList ());
     model.addAttribute ("builds", SnpsFilterUtil.getBuilds ());
     model.addAttribute ("strands", SnpsFilterUtil.getStrands ());
@@ -64,7 +66,83 @@ public class SnpController {
     model.addAttribute ("chromosomes", SnpsFilterUtil.getChromosomes ());
     return "snps/list";
   }
+  
+  @RequestMapping (params = "find=ajax", headers="Accept=application/json", method = RequestMethod.GET)
+  public String findSnpsGenericAjax (WebRequest request, Model model) throws QueryLimitExceededException {
+    Map<String, String[]> searchTerms = new HashMap<String, String[]> ();
+    searchTerms.putAll (request.getParameterMap ());
+    searchTerms.remove ("find");
+    searchTerms.remove ("page");
+    searchTerms.remove ("size");
+    for (Iterator<String[]> iterator = searchTerms.values ().iterator (); iterator.hasNext ();)
+      if (isEmpty (iterator.next ()))
+        iterator.remove ();
+    formatSearchTerms (searchTerms);
+    log.debug ("search terms are " + searchTerms);
+    model.addAttribute ("snps",
+                        Snp.findGeneric(searchTerms).setFirstResult (0)
+                           .setMaxResults (PAGE_SIZE).getResultList ());
+    model.addAttribute ("builds", SnpsFilterUtil.getBuilds ());
+    model.addAttribute ("strands", SnpsFilterUtil.getStrands ());
+    model.addAttribute ("nstudies", SnpsFilterUtil.getNStudies ());
+    model.addAttribute ("effectAlleles", SnpsFilterUtil.getEffectAllele ());
+    model.addAttribute ("refAlleles", SnpsFilterUtil.getRefAllele ());
+    model.addAttribute ("chromosomes", SnpsFilterUtil.getChromosomes ());
+    return "snps/list-ajax";
+  }
+  
+  @RequestMapping (params = "find=json", headers="Accept=application/json", method = RequestMethod.GET)
+  public @ResponseBody List<Integer> findSnpsGenericAjaxJson (		  
+          WebRequest request, Model model) {
+    
+	  /*
+	  	Map<String, String[]> searchTerms = new HashMap<String, String[]> ();
+	    searchTerms.putAll (request.getParameterMap ());
+	    searchTerms.remove ("find");
+	    searchTerms.remove ("page");
+	    searchTerms.remove ("size");
+	    searchTerms.remove ("format");
+	    for (Iterator<String[]> iterator = searchTerms.values ().iterator (); iterator.hasNext ();)
+	      if (isEmpty (iterator.next ()))
+	        iterator.remove ();
+	    formatSearchTerms (searchTerms);
+	    log.debug ("search terms are " + searchTerms);
+	    List<Snp> results = Snp.findGeneric(searchTerms).setFirstResult (0)
+	                           .setMaxResults (PAGE_SIZE).getResultList ();
+	                           */
+	    List test = new ArrayList<Integer>();
+	    test.add(1);
+	    test.add(2);
+	    return test;
+	//Create the response, a well formed JSON including Datatables required vars.
+      //e.g.
+	    /*
+      String str = "{  \"sEcho\": 2 ," +
+          "   \"iTotalRecords\": 2," +
+          "   \"iTotalDisplayRecords\": 2," +
+          "   \"aaData\": [" +
+          "       [" +
+          "           \"Gecko\"," +
+          "           \"Firefox 1.0\"," +
+          "           \"Win 98+ / OSX.2+\"," +
+          "           \"1.7\"," +
+          "           \"A\"" +
+          "       ]," +
+          "       [" +
+          "           \"Gecko\"," +
+          "           \"Firefox 1.5\"," +
+          "           \"Win 98+ / OSX.2+\"," +
+          "           \"1.8\"," +
+          "           \"A\"" +
+          "       ]" +
+          "   ]" +
+          "}";
 
+      return str;
+      */
+  }
+  
+  
   private static boolean isEmpty (String[] array) {
     if (array == null)
       return true;
@@ -170,6 +248,6 @@ public class SnpController {
                                                                       row.getUCiValue (), row.getPValue ()), "\t") + "\n").getBytes ());
       }
     },
-                                    BUFFER_SIZE);
-  }
+				BUFFER_SIZE);
+	}
 }

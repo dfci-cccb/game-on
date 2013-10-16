@@ -32,7 +32,7 @@
           Spring.addDecoration(new Spring.ElementDecoration({elementId : "j_username", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {promptMessage: "${sec_name_msg}", required : true}})); 
         </script>
       </div>
-      <br />
+      <br />      
       <div>
         <label for="j_password">
           <spring:message code="security_login_form_password" />

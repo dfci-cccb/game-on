@@ -10,6 +10,7 @@
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
   <jsp:directive.attribute name="show" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'show' link into table (default true)" />
+  <jsp:directive.attribute name="showLegend" type="java.lang.Boolean" required="false" rtexprvalue="false" description="Show column descriptions at the bottom the table" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
@@ -20,6 +21,7 @@
     <c:set var="columnMaxLengths" scope="request" />
     <c:set var="columnTypes" scope="request" />
     <c:set var="columnDatePatterns" scope="request" />
+    <c:set var="columnLabelDescriptions" scope="request" />
 
     <jsp:doBody />
 
@@ -39,15 +41,18 @@
     <c:set var="lengths" value="${fn:split(columnMaxLengths, '&#9999;')}" scope="request" />
     <c:set var="types" value="${fn:split(columnTypes, '&#9999;')}" scope="request" />
     <c:set var="patterns" value="${fn:split(columnDatePatterns, '&#9999;')}" scope="request" />
+    <c:set var="columnHeaderDescriptions" value="${fn:split(columnLabelDescriptions, '&#9999;')}" scope="request" />
 
     <spring:eval var="colCounter" expression="1" />
 
-    <table>
+    <table id="${id}">
       <thead>
         <tr>
-          <c:forTokens items="${columnLabels}" delims="${'&#9999;'}" var="columnHeading">
+          <c:forTokens items="${columnLabels}" delims="${'&#9999;'}" var="columnHeading" varStatus="num">
             <th>
+            	<a href="#" title="${columnHeaderDescriptions[num.count-1]}">
               <c:out value="${columnHeading}" />
+              </a>
               <spring:eval var="colCounter" expression="colCounter  + 1" />
             </th>
           </c:forTokens>
@@ -126,7 +131,7 @@
               <spring:message arguments="${typeName}" code="entity_update" var="update_label" htmlEscape="false" />
               <a href="${update_form_url}" alt="${fn:escapeXml(update_label)}" title="${fn:escapeXml(update_label)}">
                 <img alt="${fn:escapeXml(update_label)}" class="image" src="${update_image_url}" title="${fn:escapeXml(update_label)}" />
-              </a>
+              </a>showLegend}
             </td>
           </c:if>
           <c:if test="${delete}">
@@ -174,6 +179,19 @@
       </tr>
     </table>
 
+		<c:if test="${showLegend}">
+			<br />
+			<util:panel id="legend" title="Table Legend" openPane="false">
+	    	<h1>Table Legend</h1>
+				<ul>
+				<c:forTokens items="${columnLabels}" delims="${'&#9999;'}" var="columnHeading" varStatus="num">
+            <li>            	
+              <c:out value="${columnHeading}" /> - <c:out value="${columnHeaderDescriptions[num.count-1]}" />
+            </li>
+        </c:forTokens>  				
+				</ul>
+			</util:panel>
+		</c:if>
   </c:if>
 
 </jsp:root>
