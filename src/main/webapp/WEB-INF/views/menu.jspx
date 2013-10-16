@@ -4,8 +4,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:directive.page isELIgnored="false"/>
     <jsp:output omit-xml-declaration="yes"/>
-    
-	<!-- 
+    <!-- 
     <div id="menu" version="2.0">
         <ul id="_menu">
             <li id="c_snprow">
@@ -18,16 +17,15 @@
         </ul>
     </div>
     -->
-    <div class="snp" xmlns:f="http://www.springframework.org/tags/form" xmlns:h="http://struts.apache.org/tags-html" id="menu" version="2.0">
-        <ul id="_menu" >
+    <div xmlns:f="http://www.springframework.org/tags/form" xmlns:h="http://struts.apache.org/tags-html" class="snp" id="menu" version="2.0">
+        <ul id="_menu">
             <li id="c_snprow">
-                <h2>Filter Selection</h2>                
+                <h2>Filter Selection</h2>
                 <form method="GET">
                     <input name="find" type="hidden" value="generic"/>
                     <input name="page" type="hidden" value="${param['page']}"/>
                     <input name="size" type="hidden" value="${param['size']}"/>
-                    
-                    <input name="markerName" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}" onblur="if(value=='') value = 'Enter Marker Names'" onfocus="if(value=='Enter Marker Names') value = ''"/>
+                    <input name="markerName" onblur="if(value=='') value = 'Enter Marker Names'" onfocus="if(value=='Enter Marker Names') value = ''" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}"/>
                     <br/>
                     <select id="build" name="build">
                         <option value="">Any Build</option>
@@ -70,7 +68,9 @@
                             </c:choose>
                         </c:forEach>
                     </select>
+                    
                     <br/>
+                    <!--
                     <select id="effectAllele" name="effectAllele">
                         <option value="">Any Effect Allele</option>
                         <c:forEach items="${effectAlleles}" var="effectAllele">
@@ -99,8 +99,9 @@
                         </c:forEach>
                     </select>
                     <br/>
+                     -->
                     <select id="chromosome" name="chromosome" onchange="if(document.getElementById('any_chromosome').selected){document.getElementById('coordinateBox1').setAttribute('disabled', 'true');document.getElementById('coordinateBox2').setAttribute('disabled', 'true');}else{document.getElementById('coordinateBox1').removeAttribute('disabled');document.getElementById('coordinateBox2').removeAttribute('disabled');}">
-                        <option value="" id="any_chromosome">Any Chromosome</option>
+                        <option id="any_chromosome" value="">Any Chromosome</option>
                         <c:forEach items="${chromosomes}" var="chromosome">
                             <c:choose>
                                 <c:when test="${param['chromosome'] eq chromosome}">
@@ -118,15 +119,19 @@
                       width: 40%
                     }
                     </style>
-                    <div><input type="text" name="coordinateLower" id="coordinateBox1" /> - <input type="text" name="coordinateUpper" id="coordinateBox2" /></div>
+                    <div>
+                        <input id="coordinateBox1" name="coordinateLower" type="text"/> - <input id="coordinateBox2" name="coordinateUpper" type="text"/>
+                    </div>
                     <br/>
                     <input onclick="javascript:if(form.markerName.value=='Enter Marker Names') form.markerName.value='';" type="submit" value="find top 100"/>
                     <input onclick="window.location.href='/gameon/snps?find=generic&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=';" type="button" value="clear filters"/>
-                	<input onclick="window.location.href='/gameon/snps?download=generic&amp;markerName=${param['markerName'] eq 'Enter Marker Names' ? '' : param['markerName']}&amp;build=${param['build']}&amp;strand=${param['strand']}&amp;NStudy=${param['nstudy']}&amp;effectAllele=${param['effectAllele']}&amp;refAllele=${param['refAllele']}';" type="button" value="download top 100 filtered"/>                	
+                    <input onclick="window.location.href='/gameon/snps?download=generic&amp;markerName=${param['markerName'] eq 'Enter Marker Names' ? '' : param['markerName']}&amp;build=${param['build']}&amp;strand=${param['strand']}&amp;NStudy=${param['nstudy']}&amp;effectAllele=${param['effectAllele']}&amp;refAllele=${param['refAllele']}';" type="button" value="download top 100 filtered"/>
                 </form>
             </li>
+            <menu:category id="c_snp" z="Dv274+20U1qrrn54zmycK9c19zQ=">
+                <menu:item id="i_snp_new" messageCode="global_menu_new" url="/snps?form" z="zl9ZMPY1iJkXh6d23MNxWF+VYtI="/>
+                <menu:item id="i_snp_list" messageCode="global_menu_list" url="/snps?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kuTH4rRAX1i5HbgNpRushgbt4F0="/>
+            </menu:category>
         </ul>
     </div>
-
-
 </div>
