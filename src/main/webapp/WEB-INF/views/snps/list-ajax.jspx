@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<div id="msgid"></div>
+	<util:panel id="welcome" title="Welcome" openPane="true">
+		<h1>Welcome to the GAME-ON GWAS look-up tool!</h1>
+		<p>Here you can find association results between single nucleotide
+			polymorphisms (SNPs) and breast cancer risk. You can search for a
+			specific SNP, by gene or genetic region.</p>
+		<p>The association results are based on a meta-analysis of 12
+			breast cancer GWAS, including a total of 16,003 cases and 41,335
+			controls. The studies included are ABCFS, BBCS, DFBBCS, MARIE,
+			SASBAC, HEBCS, GC-HBOC, UK2, BPC3, BCFR and SardiNIA. Both estrogen
+			receptor positive (ER+) and estrogen receptor negative (ER-) cases
+			were included in these analysis. Subtype-specific results for ER- and
+			ER+ breast cancer will be posted in the future. All studies were
+			imputed to HapMap 2. If you have questions, please email us.</p>
+	</util:panel>
+	
+	<util:panel title="List SNPs" id="ajax_id">
+	<c:if test="${iTotalRecords>0}">
+			
+		<input onclick="downloadPage()" type="button" value="Download" style="float:right;"/>
+	</c:if>
+	<!-- 
+	<table id="l_edu_dfci_cccb_gameon_domain_Snp_ajax">
+    <thead><tr><th><a title="rs number" href="#">Marker Name</a></th><th><a title="rs number" href="#">Rs Number</a></th><th><a title="Genomic build" href="#">Build</a></th><th><a title="Chromosome" href="#">Chromosome</a></th><th><a title="Base pair position as listed in the Build" href="#">Coordinate</a></th><th><a title="Strand" href="#">Strand</a></th><th><a title="Number of studies included. Maximum is 4: BCAC (Includes 8 studies), BPC3, BCFR and Sardinia" href="#">Study</a></th><th><a title="Effect allele frequency in the UK GWAS" href="#">Eaf Uk Value</a></th><th><a title="Effect Allele" href="#">Effect Allele</a></th><th><a title="Ref Allele" href="#">Ref Allele</a></th><th><a title="Beta estimate for the effect on breast cancer risk using the Ref Allele as reference allele and Effect allele as effect allele (thus, a positive beta means that the effect allele increases breast cancer risk)" href="#">Beta value</a></th><th><a title="standard error" href="#">SE</a></th><th><a title="Odds ratio" href="#">OR Value</a></th><th><a title="Lower 95% confidence interval value" href="#">LCi</a></th><th><a title="Upper 95% confidence interval value" href="#">UCi</a></th><th><a title="P-value for the breast cancer association" href="#">P value</a></th><th></th></tr></thead>
+			<tbody>
+				<tr>
+					<td colspan="5" class="dataTables_empty">Loading data from server</td>
+				</tr>
+			</tbody>
+			<tfoot><tr><th><a title="rs number" href="#">Marker Name</a></th><th><a title="rs number" href="#">Rs Number</a></th><th><a title="Genomic build" href="#">Build</a></th><th><a title="Chromosome" href="#">Chromosome</a></th><th><a title="Base pair position as listed in the Build" href="#">Coordinate</a></th><th><a title="Strand" href="#">Strand</a></th><th><a title="Number of studies included. Maximum is 4: BCAC (Includes 8 studies), BPC3, BCFR and Sardinia" href="#">Study</a></th><th><a title="Effect allele frequency in the UK GWAS" href="#">Eaf Uk Value</a></th><th><a title="Effect Allele" href="#">Effect Allele</a></th><th><a title="Ref Allele" href="#">Ref Allele</a></th><th><a title="Beta estimate for the effect on breast cancer risk using the Ref Allele as reference allele and Effect allele as effect allele (thus, a positive beta means that the effect allele increases breast cancer risk)" href="#">Beta value</a></th><th><a title="standard error" href="#">SE</a></th><th><a title="Odds ratio" href="#">OR Value</a></th><th><a title="Lower 95% confidence interval value" href="#">LCi</a></th><th><a title="Upper 95% confidence interval value" href="#">UCi</a></th><th><a title="P-value for the breast cancer association" href="#">P value</a></th><th></th></tr></tfoot>
+		</table>
+	 -->
+		
+		<table:table data="${snps_empty}" id="l_edu_dfci_cccb_gameon_domain_Snp" path="/snps" show="false"  create="false" delete="false" update="false" showLegend="true" z="user-managed" >            
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_markerName" property="markerName" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_rsNumber" property="rsNumber" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_build" property="build" z="Oi+hzcAjhL9cfk+8R/wIXMSYvk4="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_chromosome" property="chromosome" z="GYxVmeIQFXjtzvJbbF8VN11Jk1M="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_coordinate" property="coordinate" z="2JAW8amMsbnnOlApb2HBICw9Ank="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_strand" property="strand" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_nStudy" property="NStudy" z=""/>            
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_eafUkValue" property="eafUkValue" z="OPh2BvVaZ/nfus4Ux2A/e3hHp4E="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_effectAllele" property="effectAllele" z="iUTIyadcbrozEqbuHmGOeTKQDZ8="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_refAllele" property="refAllele" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_betavalue" property="betavalue" z="PPIid6+M4Tdb0h+/LkzKiK1F0Hk="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_seValue" property="seValue" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_orValue" property="orValue" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_lCiValue" property="LCiValue" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_uCiValue" property="UCiValue" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_pValue" property="PValue" z=""/>
+        </table:table>
+	</util:panel>
+
+	<util:panel id="citations" title="Citations" openPane="false">
+		<h1>Citations</h1>
+		<p>If you use this resource in a publication, please cite
+			http://gameon.dfci.harvard.edu and acknowledge DRIVE, funded by NCI,
+			as the coordinator for assembling the data and generating this
+			website.</p>
+	</util:panel>
+	<util:panel id="references" title="References" openPane="true">
+		<h1>References</h1>
+		<p>
+			Ghoussaini M et al (2012). Genome-wide association analysis
+			identifies three new breast cancer susceptibility loci. Nat Genet
+			44:312-8. <br />Michailidou K et al (2013). Large-scale genotyping
+			identifies 41 new loci associated with breast cancer risk. Nat Genet
+			45(4):353-61, 361e1-2 <br />Siddiq A et al (2012). A meta-analysis
+			of genome-wide association studies of breast cancer identifies two
+			novel susceptibility loci at 6q14 and 20q11. Hum Mol Genet
+			21:5373-5384. <br />Garcia-Closas M et al (2013). Genome-wide
+			association studies identify four ER negative-specific breast cancer
+			risk loci. Nat Genet 45(4):392-8, 398e1-2.
+		</p>
+	</util:panel>
+	<!-- button id="demo" onclick="doAjax()" title="Button">Get the time!</button-->
+	
+	<script type="text/javascript">
+		function roundForDisplay(data){
+			return isNaN(data) ? data : data.toFixed(4);  //Rounds and keeps only 4 places after the decimal
+		}
+		$(document).ready(function(){		 
+			 $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable({
+			        "bProcessing": true,
+			        "oLanguage": {
+			            "sProcessing": "Processing... please wait."
+			        },
+			        "bServerSide": true,
+			        "bFilter": false,
+			        "bLengthChange": false,
+			        "bSort": false,
+			        "sDom": "&lt;&#39;top&#39;pi&gt;rt&lt;&#39;bottom&#39;fl&gt;&lt;&#39;clear&#39;&gt;",
+			        "iDisplayStart": 0,
+			        "iDisplayLength": ${iDisplayLength},
+			        "iTotalRecords": ${iTotalRecords},
+			        "iTotalDisplayRecords": ${iTotalRecords},	
+			        "sAjaxSource": "/gameon/snps?find=json&amp;markerName=${param.markerName}&amp;build=${param.build}&amp;NStudy=${param.NStudy}&amp;chromosome=${param.chromosome}&amp;coordinateLower=${param.coordinateLower}&amp;coordinateUpper=${param.coordinateUpper}",
+			        "aoColumns": [
+			                      { "mData": "markerName" },
+			                      { "mData": "rsNumber" },
+			                      { "mData": "build" },
+			                      { "mData": "chromosome" },
+			                      { "mData": "coordinate" },
+			                      { "mData": "strand" },
+			                      { "mData": "nstudy" },
+			                      { "mData": "eafUkValue", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "effectAllele" },
+			                      { "mData": "refAllele" },
+			                      { "mData": "betavalue", 
+			                    	  "mRender": function ( data, type, full ) {
+			                          return roundForDisplay(data);
+			                      	}
+			                      },
+			                      { "mData": "seValue", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "orValue", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "lciValue", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "uciValue", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "orValue", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      }
+			                  ]
+					});
+		});
+
+		function downloadPage(){
+			//window.location.href="/gameon/snps?download=page&amp;"+sCurAjaxSource.substr(sCurAjaxSource.indexOf("?") + 1);
+			window.location.href="/gameon/snps?download=page&amp;"+getCurrentTableFilterQueryString();
+		}
+	</script>
+</div>

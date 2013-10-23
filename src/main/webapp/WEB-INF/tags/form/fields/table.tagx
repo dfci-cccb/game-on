@@ -50,7 +50,7 @@
         <tr>
           <c:forTokens items="${columnLabels}" delims="${'&#9999;'}" var="columnHeading" varStatus="num">
             <th>
-            	<a href="#" title="${columnHeaderDescriptions[num.count-1]}">
+            	<a title="${columnHeaderDescriptions[num.count-1]}">
               <c:out value="${columnHeading}" />
               </a>
               <spring:eval var="colCounter" expression="colCounter  + 1" />

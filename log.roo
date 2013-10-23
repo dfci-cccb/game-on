@@ -99,3 +99,10 @@ exit
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-10 12:52:09
 exit
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-10 17:17:48
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-22 13:03:20
+hint
+hint 
+entity jpa --class ~.domain.Snp 
+hint
+exit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-22 21:52:47

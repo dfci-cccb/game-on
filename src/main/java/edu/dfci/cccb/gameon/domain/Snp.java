@@ -3,19 +3,27 @@ import ch.lambdaj.Lambda;
 import static ch.lambdaj.Lambda.convert;
 import static ch.lambdaj.Lambda.join;
 import ch.lambdaj.function.convert.Converter;
+
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+
 import static java.util.Arrays.asList;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+
 import static java.util.concurrent.TimeUnit.DAYS;
+
 import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.persistence.TypedQuery;
+
 import org.apache.log4j.Logger;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -69,6 +77,15 @@ public class Snp {
             put("coordinateUpper", "o.coordinate <= CONVERT(:%s, BIGINT)");
             put("coordinateLower", "o.coordinate >= CONVERT(:%s, BIGINT)");
         }
+        /*
+        public String get(Object key) {
+        	String result = super.get(key);
+        	if (result == null) {
+        		log.error("Could not find format for parameter " + key);
+        		return "true";
+        	} else return result;
+        }
+        */
     };
 
     public static List<java.lang.String> getDistinctValues(String column) {
@@ -81,7 +98,10 @@ public class Snp {
 
     public static TypedQuery<Snp> findGeneric(Map<String, String[]> searchTerms) throws QueryLimitExceededException {
         try {
-            if (users.get((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).incrementAndGet() > MAXIMUM_QUERIES) throw new QueryLimitExceededException();
+        	UserDetails key = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        	int queries = users.get(key).incrementAndGet();
+        	log.debug ("query for " + key + " class " + key.getClass () + " current queries " + queries);
+            if (queries > MAXIMUM_QUERIES) throw new QueryLimitExceededException();
             Map<String, Object> queryParams = new HashMap<String, Object>();
             String query = "SELECT o FROM Snp AS o" + formatWhereClause(searchTerms, queryParams);
             log.debug("findGeneric query=\"" + query + "\" with parameters " + queryParams);
@@ -125,5 +145,33 @@ public class Snp {
             }
         }), " AND ");
         return whereClause.length() < 1 ? "" : " WHERE " + whereClause;
+    }
+    
+    public static byte[] getDownloadHeader(){
+    	return (Lambda.join(Arrays.asList("MarkerName",
+                "RsNumber",
+                "Chromosome",
+                "Coordinate",
+                "Build",
+                "EffectAllele",
+                "RefAllele",
+                "EafUK",
+                "Beta",
+                "Se",
+                "Or",
+                "LCi",
+                "UCi",
+                "PValue"),
+    			"\t") + "\n").getBytes();
+    }
+    public byte[] toDownload(){
+    	
+    	return (Lambda.join (Arrays.asList (this.getMarkerName (), this.getRsNumber (),
+    			this.getChromosome (), this.getCoordinate (),
+    			this.getBuild (), this.getEffectAllele (),
+    			this.getRefAllele (), this.getEafUkValue (),
+                this.getBetavalue (), this.getSeValue (),
+                this.getOrValue (), this.getLCiValue (),
+                this.getUCiValue (), this.getPValue ()), "\t") + "\n").getBytes();
     }
 }
