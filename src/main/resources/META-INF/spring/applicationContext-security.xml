@@ -4,23 +4,6 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-<!-- 
-	<bean id="loginUrlAuthenticationEntryPoint"
-	    class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-	    <constructor-arg value="/login" />
-	</bean> 
-	
- 
-  <bean id="authenticationEntryPoint"
-    class="org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint">
-    <constructor-arg>
-        <map>
-            <entry key-ref="nonAjaxRequestMatcher" value-ref="loginUrlAuthenticationEntryPoint" />
-        </map>
-    </constructor-arg>
-    <property name="defaultEntryPoint" ref="ajaxAuthenticationEntryPoint" />
-	</bean>
- -->  
  	<beans:bean id="Http403ForbiddenEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
   <beans:bean id="entryPoint" class="org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint">
 	  <beans:constructor-arg>
