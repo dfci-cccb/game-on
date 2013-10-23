@@ -14,4 +14,8 @@ table#l_edu_dfci_cccb_gameon_domain_Snp thead tr th a,
 	text-decoration: none;
 	color:	#456314;
 }
- 
+
+#l_edu_dfci_cccb_gameon_domain_Snp_processing{
+	text-align: center ;
+	color: red;
+}

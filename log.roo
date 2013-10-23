@@ -104,3 +104,5 @@ hint
 hint 
 entity jpa --class ~.domain.Snp 
 hint
+exit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-22 21:52:47
