@@ -25,7 +25,7 @@
                     <input name="find" type="hidden" value="ajax"/>
                     <input name="page" type="hidden" value="${param['page']}"/>
                     <input name="size" type="hidden" value="${param['size']}"/>
-                    <input name="markerName" id="markerName" onblur="if(value=='') value = 'Enter Marker Names'" onfocus="if(value=='Enter Marker Names') value = ''" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}"/>
+                    <input name="markerName" id="markerName" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}" internalLabel="Enter Marker Names"/>
                     <br/>
                     <select id="build" name="build">
                         <option value="">Any Build</option>
@@ -136,10 +136,6 @@
 			<script type="text/javascript">
 			function findSnps(){
 					var oTable = $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable();					
-					var sMarkerName = $("#markerName").val();
-					sMarkerName = sMarkerName.contains("Enter") ? "" : sMarkerName;
-					sBuild = encodeURIComponent($("#build").val());					
-					//var sAjaxSource="/gameon/snps?find=json&amp;markerName="+sMarkerName+"&amp;build="+sBuild+"&amp;NStudy="+$("#nstudy").val()+"&amp;chromosome="+$("#chromosome").val()+"&amp;coordinateLower="+$("#coordinateBox1").val()+"&amp;coordinateUpper="+$("#coordinateBox2").val()+"&amp;iDisplayStart="+oSettings._iDisplayStart;
 					var sAjaxSource="/gameon/snps?find=json&amp;"+getFilterQueryString();
 					oTable.fnReloadAjax(sAjaxSource);
 			}
@@ -161,7 +157,11 @@
 			targInput = document.getElementById("coordinateBox2");
 			targInput.addEventListener ("blur", blurInternalLabel, false);			
 			targInput.addEventListener ("focus", focusInternalLabel, false);
-			
+
+			targInput = document.getElementById("markerName");
+			targInput.addEventListener ("blur", blurInternalLabel, false);			
+			targInput.addEventListener ("focus", focusInternalLabel, false);
+
 			$(document).ready(function(){
 				
 			});

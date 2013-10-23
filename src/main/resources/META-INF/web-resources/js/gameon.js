@@ -2,7 +2,7 @@ function getFilterQueryString(){
 	var oTable = $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable();
 	var oSettings = oTable.fnSettings();
 	var sMarkerName = $("#markerName").val();
-	sMarkerName = sMarkerName.contains("Enter") ? "" : sMarkerName;
+	sMarkerName = sMarkerName.indexOf("Enter")>-1 ? "" : sMarkerName;
 	sBuild = encodeURIComponent($("#build").val());
 	var sCoordinateLower = $("#coordinateBox1").val();
 	sCoordinateLower = isNaN(sCoordinateLower) ? "" : sCoordinateLower;
