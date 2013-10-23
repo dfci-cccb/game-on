@@ -9,7 +9,7 @@
 	<spring:url value="/${roo_css}" var="roo_css_url" />
 	<spring:url value="/resources/dojo/dojo.js" var="dojo_url" />
 	<spring:url value="/resources/dijit/themes/tundra/tundra.css"
-		var="tundra_url" />
+		var="tundra_url" />	
 	<spring:url value="/resources/spring/Spring.js" var="spring_url" />
 	<spring:url value="/resources/spring/Spring-Dojo.js"
 		var="spring_dojo_url" />
@@ -17,7 +17,9 @@
 	<link rel="stylesheet" type="text/css" href="${tundra_url}" />
 	<link rel="stylesheet" type="text/css" media="screen"
 		href="${roo_css_url}" />
-	<link rel="SHORTCUT ICON" href="${favicon}" />
+	<link rel="SHORTCUT ICON" href="${favicon}" />	
+	<link rel="stylesheet" href="/gameon/resources/jquery.datatables/css/gameon-datatables.css" />
+	<link rel="stylesheet" href="/gameon/resources/css/gameon.css" />
 
 	<!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
 	<c:set var="userLocale">
@@ -25,18 +27,16 @@
 		<c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
 	</c:set>
 
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-1.8.2.min.js" />
-		
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>		
 	<script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
 
 	<script src="${dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
 	<script src="${spring_url}" type="text/javascript"><!-- /required for FF3 and Opera --></script>
 	<script src="${spring_dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
 
-	<script type="text/javascript"
-		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"/>
-		
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"><!-- required for FF3 and Opera --></script>
+	<script type="text/javascript" src="/gameon/resources/jquery.datatables/js/jquery.dataTables.fnReloadAjax.js"><!-- required for FF3 and Opera --></script>
+	<script type="text/javascript" src="/gameon/resources/js/gameon.js"><!-- required for FF3 and Opera --></script>	
 	<script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
 
 

@@ -22,10 +22,10 @@
             <li id="c_snprow">
                 <h2>Filter Selection</h2>
                 <form method="GET">
-                    <input name="find" type="hidden" value="generic"/>
+                    <input name="find" type="hidden" value="ajax"/>
                     <input name="page" type="hidden" value="${param['page']}"/>
                     <input name="size" type="hidden" value="${param['size']}"/>
-                    <input name="markerName" onblur="if(value=='') value = 'Enter Marker Names'" onfocus="if(value=='Enter Marker Names') value = ''" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}"/>
+                    <input name="markerName" id="markerName" onblur="if(value=='') value = 'Enter Marker Names'" onfocus="if(value=='Enter Marker Names') value = ''" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}"/>
                     <br/>
                     <select id="build" name="build">
                         <option value="">Any Build</option>
@@ -113,25 +113,59 @@
                             </c:choose>
                         </c:forEach>
                     </select>
-                    <br/>
-                    <style>
-                    .coordinateBox {
-                      width: 40%
-                    }
-                    </style>
-                    <div>
-                        <input id="coordinateBox1" name="coordinateLower" type="text"/> - <input id="coordinateBox2" name="coordinateUpper" type="text"/>
+                    <br/>                    
+                    <div id="coordinates">
+                        <input internalLabel="Start Coord" id="coordinateBox1" name="coordinateLower" type="text" value="${empty param['coordinateLower'] ? 'Start Coord' : param['coordinateLower']}"/>
+                        -
+                        <input internalLabel="End Coord" id="coordinateBox2" name="coordinateUpper" type="text" value="${empty param['coordinateUpper'] ? 'End Coord' : param['coordinateUpper']}"/>
                     </div>
                     <br/>
-                    <input onclick="javascript:if(form.markerName.value=='Enter Marker Names') form.markerName.value='';" type="submit" value="find top 100"/>
-                    <input onclick="window.location.href='/gameon/snps?find=generic&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=';" type="button" value="clear filters"/>
-                    <input onclick="window.location.href='/gameon/snps?download=generic&amp;markerName=${param['markerName'] eq 'Enter Marker Names' ? '' : param['markerName']}&amp;build=${param['build']}&amp;strand=${param['strand']}&amp;NStudy=${param['nstudy']}&amp;effectAllele=${param['effectAllele']}&amp;refAllele=${param['refAllele']}';" type="button" value="download top 100 filtered"/>
+                    <input onclick="findSnps()" type="button" value="find"/>
+                    <input onclick="window.location.href='/gameon/snps?find=ajax&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=';" type="button" value="clear filters"/>
+                    
+                    <!--  input onclick="javascript:if(form.markerName.value=='Enter Marker Names') form.markerName.value='';" type="submit" value="find"/-->
+                    <!-- input onclick="window.location.href='/gameon/snps?download=generic&amp;markerName=${param['markerName'] eq 'Enter Marker Names' ? '' : param['markerName']}&amp;build=${param['build']}&amp;strand=${param['strand']}&amp;NStudy=${param['nstudy']}&amp;effectAllele=${param['effectAllele']}&amp;refAllele=${param['refAllele']}';" type="button" value="download top 100 filtered"/ -->
                 </form>
             </li>
+            <!-- 
             <menu:category id="c_snp" z="Dv274+20U1qrrn54zmycK9c19zQ=">
                 <menu:item id="i_snp_new" messageCode="global_menu_new" url="/snps?form" z="zl9ZMPY1iJkXh6d23MNxWF+VYtI="/>
                 <menu:item id="i_snp_list" messageCode="global_menu_list" url="/snps?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kuTH4rRAX1i5HbgNpRushgbt4F0="/>
             </menu:category>
-        </ul>
+             -->
+			<script type="text/javascript">
+			function findSnps(){
+					var oTable = $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable();					
+					var sMarkerName = $("#markerName").val();
+					sMarkerName = sMarkerName.contains("Enter") ? "" : sMarkerName;
+					sBuild = encodeURIComponent($("#build").val());					
+					//var sAjaxSource="/gameon/snps?find=json&amp;markerName="+sMarkerName+"&amp;build="+sBuild+"&amp;NStudy="+$("#nstudy").val()+"&amp;chromosome="+$("#chromosome").val()+"&amp;coordinateLower="+$("#coordinateBox1").val()+"&amp;coordinateUpper="+$("#coordinateBox2").val()+"&amp;iDisplayStart="+oSettings._iDisplayStart;
+					var sAjaxSource="/gameon/snps?find=json&amp;"+getFilterQueryString();
+					oTable.fnReloadAjax(sAjaxSource);
+			}
+
+			function blurInternalLabel(){
+				var label=this.getAttribute("internalLabel");
+				if(this.value=='') this.value = label;
+			}
+			function focusInternalLabel(){
+				var label=this.getAttribute("internalLabel");				
+				if(this.value==label) this.value = '';
+			}
+			
+			
+			var targInput = document.getElementById("coordinateBox1");
+			targInput.addEventListener ("blur", blurInternalLabel, false);			
+			targInput.addEventListener ("focus", focusInternalLabel, false);
+			
+			targInput = document.getElementById("coordinateBox2");
+			targInput.addEventListener ("blur", blurInternalLabel, false);			
+			targInput.addEventListener ("focus", focusInternalLabel, false);
+			
+			$(document).ready(function(){
+				
+			});
+			</script>
+		</ul>
     </div>
 </div>

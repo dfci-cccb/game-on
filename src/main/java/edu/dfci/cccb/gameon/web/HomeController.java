@@ -29,6 +29,6 @@ public class HomeController {
 
   @RequestMapping (method = RequestMethod.GET)
   public String home (Model uiModel) {
-    return "redirect:/snps?find=generic&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=";
+    return "redirect:/snps?find=ajax&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=";
   }
 }

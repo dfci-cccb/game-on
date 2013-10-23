@@ -1,0 +1,17 @@
+#coordinateBox1, 
+#coordinateBox2{
+	width: 46%;
+	margin-left: 0px;
+	margin-right: 0px;	
+}
+#coordinates{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+table#l_edu_dfci_cccb_gameon_domain_Snp thead tr th a,
+.digitFocused table#l_edu_dfci_cccb_gameon_domain_Snp thead tr th a{
+	text-decoration: none;
+	color:	#456314;
+}
+ 

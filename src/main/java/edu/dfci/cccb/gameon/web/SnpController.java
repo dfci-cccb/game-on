@@ -27,10 +27,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import ch.lambdaj.Lambda;
 import edu.dfci.cccb.gameon.domain.QueryLimitExceededException;
 import edu.dfci.cccb.gameon.domain.Snp;
 import edu.dfci.cccb.gameon.util.SnpsFilterUtil;
+
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RequestMapping ("/snps")
 @Controller
@@ -66,80 +72,50 @@ public class SnpController {
     model.addAttribute ("chromosomes", SnpsFilterUtil.getChromosomes ());
     return "snps/list";
   }
-  
-  @RequestMapping (params = "find=ajax", headers="Accept=application/json", method = RequestMethod.GET)
+  // headers="Accept=application/json",
+  /*
+    put("build", "o.build = :%s");
+	put("strand", "o.strand = :%s");
+	put("NStudy", "o.nStudy = :%s");
+	put("effectAllele", "o.effectAllele = :%s");
+	put("refAllele", "o.refAllele = :%s");
+	put("markerName", "o.markerName LIKE LOWER(:%s)");
+	put("chromosome", "o.chromosome LIKE LOWER(:%s)");
+	put("coordinateUpper", "o.coordinate <= CONVERT(:%s, BIGINT)");
+	put("coordinateLower", "o.coordinate >= CONVERT(:%s, BIGINT)"); 
+  */
+  @RequestMapping (params = "find=ajax", method = RequestMethod.GET)
   public String findSnpsGenericAjax (WebRequest request, Model model) throws QueryLimitExceededException {
-    Map<String, String[]> searchTerms = new HashMap<String, String[]> ();
-    searchTerms.putAll (request.getParameterMap ());
-    searchTerms.remove ("find");
-    searchTerms.remove ("page");
-    searchTerms.remove ("size");
-    for (Iterator<String[]> iterator = searchTerms.values ().iterator (); iterator.hasNext ();)
-      if (isEmpty (iterator.next ()))
-        iterator.remove ();
-    formatSearchTerms (searchTerms);
+	
+	Map<String, String[]> searchTerms = getSearchTerms(request);
+    formatSearchTerms (searchTerms);    
     log.debug ("search terms are " + searchTerms);
-    model.addAttribute ("snps",
-                        Snp.findGeneric(searchTerms).setFirstResult (0)
-                           .setMaxResults (PAGE_SIZE).getResultList ());
+    model.addAttribute("iTotalRecords", Snp.countGeneric(searchTerms));
+    model.addAttribute("iDisplayLength", PAGE_SIZE);
     model.addAttribute ("builds", SnpsFilterUtil.getBuilds ());
     model.addAttribute ("strands", SnpsFilterUtil.getStrands ());
     model.addAttribute ("nstudies", SnpsFilterUtil.getNStudies ());
     model.addAttribute ("effectAlleles", SnpsFilterUtil.getEffectAllele ());
     model.addAttribute ("refAlleles", SnpsFilterUtil.getRefAllele ());
     model.addAttribute ("chromosomes", SnpsFilterUtil.getChromosomes ());
+    model.addAttribute("snps_empty", new ArrayList<Snp>());
+    
     return "snps/list-ajax";
   }
   
-  @RequestMapping (params = "find=json", headers="Accept=application/json", method = RequestMethod.GET)
-  public @ResponseBody List<Integer> findSnpsGenericAjaxJson (		  
-          WebRequest request, Model model) {
+  @RequestMapping (params = "find=json", method = RequestMethod.GET)
+  public @ResponseBody String findSnpsGenericAjaxJson (		  
+          WebRequest request, Model model, @RequestParam("iDisplayStart") int iDisplayStart) throws JsonProcessingException, QueryLimitExceededException {
     
-	  /*
-	  	Map<String, String[]> searchTerms = new HashMap<String, String[]> ();
-	    searchTerms.putAll (request.getParameterMap ());
-	    searchTerms.remove ("find");
-	    searchTerms.remove ("page");
-	    searchTerms.remove ("size");
-	    searchTerms.remove ("format");
-	    for (Iterator<String[]> iterator = searchTerms.values ().iterator (); iterator.hasNext ();)
-	      if (isEmpty (iterator.next ()))
-	        iterator.remove ();
+	    Map<String, String[]> searchTerms = getSearchTerms(request);
 	    formatSearchTerms (searchTerms);
 	    log.debug ("search terms are " + searchTerms);
-	    List<Snp> results = Snp.findGeneric(searchTerms).setFirstResult (0)
+	    
+	    List<Snp> results = Snp.findGeneric(searchTerms).setFirstResult (iDisplayStart)
 	                           .setMaxResults (PAGE_SIZE).getResultList ();
-	                           */
-	    List test = new ArrayList<Integer>();
-	    test.add(1);
-	    test.add(2);
-	    return test;
-	//Create the response, a well formed JSON including Datatables required vars.
-      //e.g.
-	    /*
-      String str = "{  \"sEcho\": 2 ," +
-          "   \"iTotalRecords\": 2," +
-          "   \"iTotalDisplayRecords\": 2," +
-          "   \"aaData\": [" +
-          "       [" +
-          "           \"Gecko\"," +
-          "           \"Firefox 1.0\"," +
-          "           \"Win 98+ / OSX.2+\"," +
-          "           \"1.7\"," +
-          "           \"A\"" +
-          "       ]," +
-          "       [" +
-          "           \"Gecko\"," +
-          "           \"Firefox 1.5\"," +
-          "           \"Win 98+ / OSX.2+\"," +
-          "           \"1.8\"," +
-          "           \"A\"" +
-          "       ]" +
-          "   ]" +
-          "}";
-
-      return str;
-      */
+	    long totalRecords = Snp.countGeneric(searchTerms);
+	    ObjectMapper mapper = new ObjectMapper();
+	    return String.format("{\"iTotalRecords\": %d, \"iTotalDisplayRecords\": %d, \"aaData\": %s}", totalRecords, totalRecords, mapper.writeValueAsString(results));
   }
   
   
@@ -178,13 +154,46 @@ public class SnpController {
     }
   }
 
+  @RequestMapping (params = "download=page", method = RequestMethod.GET)
+  public void downloadSnpsPage(WebRequest request, HttpServletResponse response,
+		  @RequestParam("iDisplayStart") int iDisplayStart) throws QueryLimitExceededException 
+  {
+    Map<String, String[]> searchTerms = getSearchTerms(request);
+    formatSearchTerms (searchTerms);
+    log.debug ("search terms are " + searchTerms);
+    
+    List<Snp> results = Snp.findGeneric(searchTerms).setFirstResult (iDisplayStart)
+                           .setMaxResults (PAGE_SIZE).getResultList ();
+    response.setContentType ("application/octet-stream");
+    response.setHeader ("Content-Disposition",
+                        "attachment;filename=data.txt");
+    try {
+      response.getOutputStream().write(Snp.getDownloadHeader());     
+      for(Snp snp : results)
+        response.getOutputStream().write(snp.toDownload());
+    } catch (IOException e) {
+      log.warn ("IO exception during download for search terms "
+                + searchTerms, e);
+    }
+  }
+  
   @ExceptionHandler (QueryLimitExceededException.class)
   @ResponseStatus (value = HttpStatus.TOO_MANY_REQUESTS,
                    reason = "Maximum allowable query count exceeded, please try again later")
   public void handleQueryLimit () {}
 
-  private static Map<String, String[]> formatSearchTerms (
-                                                          Map<String, String[]> terms) {
+  private static Map<String, String[]> getSearchTerms(WebRequest request){
+	  Map<String, String[]> searchTerms = new HashMap<String, String[]> ();
+	  String[] queryStringSearchTerms = {"markerName", "build", "NStudy", "chromosome", "coordinateLower", "coordinateUpper"};	    
+	  for (String paramName : queryStringSearchTerms){
+		  String[] values = request.getParameterValues(paramName);
+		  if (!isEmpty(values))
+			  searchTerms.put(paramName, values);
+	  }
+	  return searchTerms;
+  }
+  
+  private static Map<String, String[]> formatSearchTerms (Map<String, String[]> terms) {
     // marker name processing
     {
       List<String> result = new ArrayList<String> ();
@@ -192,7 +201,7 @@ public class SnpController {
       if (markerNameTerm != null) {
         for (String markerNameArg : terms.get ("markerName"))
           for (String markerName : markerNameArg.split ("[ ,]+"))
-            result.add (markerName + "%");
+            result.add (markerName.replaceAll("\\*", "%"));
         terms.put ("markerName", result.toArray (new String[0]));
       }
     }

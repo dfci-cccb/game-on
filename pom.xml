@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<roo.version>1.2.4.RELEASE</roo.version>
 		<slf4j.version>1.7.2</slf4j.version>
-		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring.version>3.2.4.RELEASE</spring.version>
 		<spring-security.version>3.1.0.RELEASE</spring-security.version>
 		<jackson.version>2.2.2</jackson.version>
 	</properties>
@@ -347,6 +347,16 @@
 		<!-- Spring Roo -->
 		<!-- <dependency> <groupId>org.springframework.roo</groupId> <artifactId>spring-roo</artifactId> 
 			<version>1.2.4.RELEASE</version> </dependency> -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -385,22 +395,7 @@
 						<artifactId>aspectjtools</artifactId>
 						<version>${aspectj.version}</version>
 					</dependency>
-					<!-- Jackson JSON -->
-					<dependency>
-						<groupId>com.fasterxml.jackson.core</groupId>
-						<artifactId>jackson-core</artifactId>
-						<version>${jackson.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>com.fasterxml.jackson.core</groupId>
-						<artifactId>jackson-databind</artifactId>
-						<version>${jackson.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>com.fasterxml.jackson.core</groupId>
-						<artifactId>jackson-annotations</artifactId>
-						<version>${jackson.version}</version>
-					</dependency>
+					
 				</dependencies>
 				<executions>
 					<execution>
@@ -528,14 +523,37 @@
 				</dependencies>
 			</plugin>
 		</plugins>
-		<!-- <pluginManagement> <plugins> This plugin's configuration is used to 
-			store Eclipse m2e settings only. It has no influence on the Maven build itself. 
-			<plugin> <groupId>org.eclipse.m2e</groupId> <artifactId>lifecycle-mapping</artifactId> 
-			<version>1.0.0</version> <configuration> <lifecycleMappingMetadata> <pluginExecutions> 
-			<pluginExecution> <pluginExecutionFilter> <groupId>org.codehaus.mojo</groupId> 
-			<artifactId> aspectj-maven-plugin </artifactId> <versionRange>[1.2,)</versionRange> 
-			<goals> <goal>test-compile</goal> <goal>compile</goal> </goals> </pluginExecutionFilter> 
-			<action> <ignore/> </action> </pluginExecution> </pluginExecutions> </lifecycleMappingMetadata> 
-			</configuration> </plugin> </plugins> </pluginManagement> -->
+		
+		<pluginManagement>
+			<plugins> <!-- This plugin's configuration is used to store Eclipse m2e settings only. 
+					It has no influence on the Maven build itself. --> 
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId> aspectj-maven-plugin </artifactId>
+										<versionRange>[1.2,)</versionRange>
+										<goals>
+											<goal>test-compile</goal>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
 	</build>
 </project>
