@@ -76,6 +76,7 @@ public class Snp {
             put("chromosome", "o.chromosome LIKE LOWER(:%s)");
             put("coordinateUpper", "o.coordinate <= CONVERT(:%s, BIGINT)");
             put("coordinateLower", "o.coordinate >= CONVERT(:%s, BIGINT)");
+            put("geneInfo", "LOWER(o.geneInfo) LIKE LOWER(:%s)");
         }
         /*
         public String get(Object key) {
@@ -167,7 +168,7 @@ public class Snp {
     public byte[] toDownload(){
     	
     	return (Lambda.join (Arrays.asList (this.getMarkerName (), this.getRsNumber (),
-    			this.getChromosome (), this.getCoordinate (),
+    			this.getChromosome (), this.getCoordinate (), this.getGeneInfo(),
     			this.getBuild (), this.getEffectAllele (),
     			this.getRefAllele (), this.getEafUkValue (),
                 this.getBetavalue (), this.getSeValue (),

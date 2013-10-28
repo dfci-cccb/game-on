@@ -1,12 +1,29 @@
+.snp input[type="text"]{
+    width: 94%;
+    margin-top: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+    
 #coordinateBox1, 
 #coordinateBox2{
 	width: 46%;
 	margin-left: 0px;
 	margin-right: 0px;	
 }
+#coordinateBox1{
+	margin-right:1px;
+}
+#coordinateBox2{
+	margin-left:1px;
+}
 #coordinates{
 	margin-left: 5px;
 	margin-right: 5px;
+}
+
+.internal-input-label{
+	color:#bbb;
 }
 
 table#l_edu_dfci_cccb_gameon_domain_Snp thead tr th{
@@ -21,6 +38,7 @@ table#l_edu_dfci_cccb_gameon_domain_Snp thead tr th a,
 
 #l_edu_dfci_cccb_gameon_domain_Snp_processing{
 	text-align: center ;	
-	color: rgb(125, 178, 35); /*green */
-	
+	/*color: rgb(125, 178, 35); *//*green */
+	/*color: blue; */
+	color:  rgb(100, 140, 29); /*dar green */
 }

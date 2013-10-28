@@ -45,6 +45,7 @@
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_build" property="build" z="Oi+hzcAjhL9cfk+8R/wIXMSYvk4="/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_chromosome" property="chromosome" z="GYxVmeIQFXjtzvJbbF8VN11Jk1M="/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_coordinate" property="coordinate" z="2JAW8amMsbnnOlApb2HBICw9Ank="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_geneInfo" property="geneInfo" z=""/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_strand" property="strand" z=""/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_nStudy" property="NStudy" z=""/>            
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_eafUkValue" property="eafUkValue" z="OPh2BvVaZ/nfus4Ux2A/e3hHp4E="/>
@@ -97,7 +98,7 @@
 			 
 			var oTable = $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable({
 			        "bProcessing": true,
-			        "oLanguage": {"sProcessing": "Processing... please wait."},
+			        "oLanguage": {"sProcessing": "Processing... please wait, this may take a minute."},
 			        "bServerSide": true,
 			        "bFilter": false,
 			        "bLengthChange": false,
@@ -131,6 +132,7 @@
 			                      { "mData": "build" },
 			                      { "mData": "chromosome" },
 			                      { "mData": "coordinate" },
+			                      { "mData": "geneInfo" },
 			                      { "mData": "strand" },
 			                      { "mData": "nstudy" },
 			                      { "mData": "eafUkValue", 
