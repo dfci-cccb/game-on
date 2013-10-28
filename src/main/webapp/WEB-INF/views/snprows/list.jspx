@@ -7,6 +7,7 @@
             <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_markerName" property="markerName" z="5QtNXNHqP3lE1XlpO63DLchbwfg="/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_rsNumber" property="rsNumber" z="R/yS9iDzlp6+oqK3ZXaZjSpIQ90="/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_coordinate" property="coordinate" z="ObLjme5rPlbAmUYudQYfgZnefRc="/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_geneInfo" property="geneInfo" z="user-managed"/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_build" property="build" z="PAfxS2ject35TKjv863lIVUkw8I="/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_strand" property="strand" z="1mwhp9qQHUrmLnOmJdreERtsYjI="/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_SnpRow_nStudy" property="NStudy" z="HcxGulJvTAL7hDiqf35sauzDIKU="/>

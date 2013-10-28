@@ -119,11 +119,12 @@
                         -
                         <input internalLabel="End Coord" id="coordinateBox2" name="coordinateUpper" type="text" value="${empty param['coordinateUpper'] ? 'End Coord' : param['coordinateUpper']}"/>
                     </div>
+                    <input internalLabel="Enter Gene" name="geneInfo" id="gene" type="text" value="${empty param['gene'] ? 'Enter Gene' : param['gene']}"/>
                     <br/>
                     <input onclick="findSnps()" type="button" value="find"/>
                     <input onclick="window.location.href='/gameon/snps?find=ajax&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=';" type="button" value="clear filters"/>
                     
-                    <!--  input onclick="javascript:if(form.markerName.value=='Enter Marker Names') form.markerName.value='';" type="submit" value="find"/-->
+                    <!-- input onclick="javascript:onFindClick();" type="submit" value="find"/-->
                     <!-- input onclick="window.location.href='/gameon/snps?download=generic&amp;markerName=${param['markerName'] eq 'Enter Marker Names' ? '' : param['markerName']}&amp;build=${param['build']}&amp;strand=${param['strand']}&amp;NStudy=${param['nstudy']}&amp;effectAllele=${param['effectAllele']}&amp;refAllele=${param['refAllele']}';" type="button" value="download top 100 filtered"/ -->
                 </form>
             </li>
@@ -141,27 +142,58 @@
 			}
 
 			function blurInternalLabel(){
-				var label=this.getAttribute("internalLabel");
-				if(this.value=='') this.value = label;
+				var label=this.getAttribute("internalLabel");				
+				if(this.value=='') {
+					this.value = label;
+					this.className = "internal-input-label";
+				}				
 			}
 			function focusInternalLabel(){
 				var label=this.getAttribute("internalLabel");				
-				if(this.value==label) this.value = '';
+				if(this.value==label){ 
+						this.value = '';
+						this.className = "";
+				}
 			}
 			
+			function onFindClick(){
+				var input = $("#markerName");
+				console.log(input.val());
+				if(input.val()==input.attr("internalLabel"))
+					input.val("");
+
+				input = $("#coordinateBox1");
+				console.log(input.val());
+				if(input.val()==input.attr("internalLabel"))
+					input.val("");
+				input = $("#coordinateBox2");
+				console.log(input.val());
+				if(input.val()==input.attr("internalLabel"))
+					input.val("");
+				input = $("#gene");
+				console.log(input.val());
+				if(input.val()==input.attr("internalLabel"))
+					input.val("");
+
+			}
 			
+			function initInternalLabel(targInput){
+				targInput.onblur=blurInternalLabel;
+				targInput.onfocus=focusInternalLabel;
+				targInput.className = "internal-input-label";					
+			}
 			var targInput = document.getElementById("coordinateBox1");
-			targInput.addEventListener ("blur", blurInternalLabel, false);			
-			targInput.addEventListener ("focus", focusInternalLabel, false);
+			initInternalLabel(targInput);
 			
 			targInput = document.getElementById("coordinateBox2");
-			targInput.addEventListener ("blur", blurInternalLabel, false);			
-			targInput.addEventListener ("focus", focusInternalLabel, false);
-
+			initInternalLabel(targInput);
+			
 			targInput = document.getElementById("markerName");
-			targInput.addEventListener ("blur", blurInternalLabel, false);			
-			targInput.addEventListener ("focus", focusInternalLabel, false);
-
+			initInternalLabel(targInput);
+			
+			targInput = document.getElementById("gene");
+			initInternalLabel(targInput);
+			
 			$(document).ready(function(){
 				
 			});

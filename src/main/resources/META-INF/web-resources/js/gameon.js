@@ -8,7 +8,9 @@ function getFilterQueryString(){
 	sCoordinateLower = isNaN(sCoordinateLower) ? "" : sCoordinateLower;
 	var sCoordinateUpper = $("#coordinateBox2").val();
 	sCoordinateUpper = isNaN(sCoordinateUpper) ? "" : sCoordinateUpper;
-	var sAjaxSource="markerName="+sMarkerName+"&build="+sBuild+"&NStudy="+$("#nstudy").val()+"&chromosome="+$("#chromosome").val()+"&coordinateLower="+sCoordinateLower+"&coordinateUpper="+sCoordinateUpper+"&iDisplayStart="+oSettings._iDisplayStart;
+	var sGeneInfo = $("#gene").val();
+	sGeneInfo = sGeneInfo.indexOf("Enter")>-1 ? "" : sGeneInfo;
+	var sAjaxSource="markerName="+sMarkerName+"&build="+sBuild+"&NStudy="+$("#nstudy").val()+"&chromosome="+$("#chromosome").val()+"&coordinateLower="+sCoordinateLower+"&coordinateUpper="+sCoordinateUpper+"&geneInfo="+sGeneInfo+"&iDisplayStart="+oSettings._iDisplayStart;
 	return sAjaxSource;
 }
 

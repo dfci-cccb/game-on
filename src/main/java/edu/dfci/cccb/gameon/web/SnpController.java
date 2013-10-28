@@ -180,11 +180,13 @@ public class SnpController {
   @ExceptionHandler (QueryLimitExceededException.class)
   @ResponseStatus (value = HttpStatus.TOO_MANY_REQUESTS,
                    reason = "Maximum allowable query count exceeded, please try again later")
-  public void handleQueryLimit () {}
+  public void handleQueryLimit () {
+	  
+  }
 
   private static Map<String, String[]> getSearchTerms(WebRequest request){
 	  Map<String, String[]> searchTerms = new HashMap<String, String[]> ();
-	  String[] queryStringSearchTerms = {"markerName", "build", "NStudy", "chromosome", "coordinateLower", "coordinateUpper"};	    
+	  String[] queryStringSearchTerms = {"markerName", "build", "NStudy", "chromosome", "coordinateLower", "coordinateUpper", "geneInfo"};	    
 	  for (String paramName : queryStringSearchTerms){
 		  String[] values = request.getParameterValues(paramName);
 		  if (!isEmpty(values))
@@ -193,19 +195,28 @@ public class SnpController {
 	  return searchTerms;
   }
   
+  private static String[] formatWildCardTerms(String [] wildCardTerms){
+	  List<String> result = new ArrayList<String> ();
+	  if (wildCardTerms != null) {
+		  for (String markerNameArg : wildCardTerms)
+			  for (String markerName : markerNameArg.split ("[ ,]+"))
+				  result.add (markerName.replaceAll("\\*", "%"));
+	  }
+	  return result.toArray (new String[0]);
+  }
+  
   private static Map<String, String[]> formatSearchTerms (Map<String, String[]> terms) {
-    // marker name processing
-    {
-      List<String> result = new ArrayList<String> ();
-      String[] markerNameTerm = terms.get ("markerName");
-      if (markerNameTerm != null) {
-        for (String markerNameArg : terms.get ("markerName"))
-          for (String markerName : markerNameArg.split ("[ ,]+"))
-            result.add (markerName.replaceAll("\\*", "%"));
-        terms.put ("markerName", result.toArray (new String[0]));
-      }
-    }
-    return terms;
+
+	  String[] markerNameTerm = terms.get ("markerName");
+	  if (markerNameTerm != null) {
+		  terms.put ("markerName", formatWildCardTerms(markerNameTerm));
+	  }
+	  String[] geneInfoTerm = terms.get("geneInfo");
+	  if (geneInfoTerm != null) {
+		  terms.put ("geneInfo", formatWildCardTerms(geneInfoTerm));
+	  }
+
+	  return terms;
   }
 
   private static InputStream snpsToInputStream (final TypedQuery<Snp> query, final int count) {
