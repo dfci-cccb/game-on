@@ -91,13 +91,7 @@
 		}
 		
 		function roundForDisplay(data){
-			if(isNaN(data))
-				return data;
-			else{
-				//var roundedTo4 = data.toFixed(4); //this did not work for sci.notation 
-				return data.toPrecision(5);
-			}
-			
+			return isNaN(data) ? data : data.toPrecision(5);  //Rounds and keeps only 4 places after the decimal (data.toFixed(4) does not work for very small numbers that require sci.notation)			
 		}
 		
 		$(document).ready(function(){		 
