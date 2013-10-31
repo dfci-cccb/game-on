@@ -91,7 +91,13 @@
 		}
 		
 		function roundForDisplay(data){
-			return isNaN(data) ? data : data.toFixed(4);  //Rounds and keeps only 4 places after the decimal
+			if(isNaN(data))
+				return data;
+			else{
+				//var roundedTo4 = data.toFixed(4); //this did not work for sci.notation 
+				return data.toPrecision(5);
+			}
+			
 		}
 		
 		$(document).ready(function(){		 
@@ -167,7 +173,7 @@
 				                          return roundForDisplay(data);
 				                      	}
 			                      },
-			                      { "mData": "orValue", 
+			                      { "mData": "pvalue", 
 			                    	  "mRender": function ( data, type, full ) {
 				                          return roundForDisplay(data);
 				                      	}

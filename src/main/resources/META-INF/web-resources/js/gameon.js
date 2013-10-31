@@ -23,6 +23,8 @@ function getCurrentAjaxSource(){
 function getCurrentTableFilterQueryString(){
 	var sCurAjaxSource = getCurrentAjaxSource();	
 	var sCurFilter = sCurAjaxSource.substr(sCurAjaxSource.indexOf("?")+1);
-	sCurFilter = sCurFilter.replace("find=json&", "");	
+	sCurFilter = sCurFilter.replace("find=json&", "");
+	if(sCurFilter.indexOf("iDisplayStart")==-1)
+		sCurFilter+="&iDisplayStart=0";
 	return sCurFilter;
 }
