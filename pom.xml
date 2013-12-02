@@ -358,7 +358,34 @@
 			<version>2.2.2</version>
 		</dependency>
 	</dependencies>
+	
+	<profiles>
+	  <profile>
+	    <id>dev</id>
+	    <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+	    <properties>
+	      <database.url>jdbc:h2:file:~/game-on;DB_CLOSE_DELAY=-1</database.url>
+	      <web.xml>src/main/webapp/WEB-INF/web-dev.xml</web.xml>
+	    </properties>
+	  </profile>
+	  <profile>
+	    <id>prod</id>
+	    <properties>
+	      <database.url>jdbc:h2:file:/opt/cccb/cccbapps/work/game-on;DB_CLOSE_DELAY\=-1</database.url>
+	      <web.xml>src/main/webapp/WEB-INF/web.xml</web.xml>
+	    </properties>
+	  </profile>
+	</profiles>
+	
 	<build>
+	  <resources>
+	    <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+	  </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -500,7 +527,8 @@
 				<version>8.1.4.v20120524</version>
 				<configuration>
 					<webAppConfig>
-						<contextPath>/${project.name}</contextPath>
+						<contextPath>/${project.name}</contextPath>		
+						<overrideDescriptor>${web.xml}</overrideDescriptor>				            
 					</webAppConfig>
 				</configuration>
 			</plugin>
