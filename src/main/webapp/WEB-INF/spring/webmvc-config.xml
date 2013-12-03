@@ -28,6 +28,10 @@
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor"/>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang"/>
+        <mvc:interceptor>
+        	<mvc:mapping path="/snps"/>
+        	<bean class="" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <!-- Selects a static view for rendering without the need for an explicit controller -->

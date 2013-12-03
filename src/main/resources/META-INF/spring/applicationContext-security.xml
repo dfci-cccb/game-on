@@ -51,7 +51,7 @@
     <authentication-provider>
       <password-encoder hash="sha-256" />
       <user-service>
-        <user name="gameon"
+        <user name="admin"
           password="8f347c17c1c55d72a07bbf82ea1c6e6b350aeb5036291d787d8fc8e49529e7b9"
           authorities="ROLE_ADMIN" />
       </user-service>

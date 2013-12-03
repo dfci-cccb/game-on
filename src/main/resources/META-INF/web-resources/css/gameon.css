@@ -42,3 +42,17 @@ table#l_edu_dfci_cccb_gameon_domain_Snp thead tr th a,
 	/*color: blue; */
 	color:  rgb(100, 140, 29); /*dar green */
 }
+
+#google_login_form{
+	margin-bottom: 1em;
+}
+#google_logo{
+	display: block;
+	margin-bottom: .7em;
+}
+div.errors{
+	margin-left: 0px;
+}
+#_title_admin_login_panel_id{
+	display: none;
+}
