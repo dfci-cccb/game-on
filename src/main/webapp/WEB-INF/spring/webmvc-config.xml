@@ -30,7 +30,7 @@
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang"/>
         <mvc:interceptor>
         	<mvc:mapping path="/snps"/>
-        	<bean class="" />
+        	<bean class="edu.dfci.cccb.gameon.web.interceptor.TermsOfUseInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
