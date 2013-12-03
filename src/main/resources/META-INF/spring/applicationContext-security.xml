@@ -21,24 +21,39 @@
   <!-- HTTP security configurations -->
   <http auto-config="true" use-expressions="true" entry-point-ref="entryPoint">
     <form-login login-processing-url="/resources/j_spring_security_check"
-      login-page="/login" authentication-failure-url="/login?login_error=t" />
+      login-page="/login" authentication-failure-url="/login?login_error=t"/>
+      
+    <openid-login login-processing-url="/resources/j_spring_openid_security_check"
+      login-page="/login" authentication-failure-url="/login?login_error=t">
+      <attribute-exchange identifier-match="https://www.google.com/.*">
+      	<openid-attribute name="email" type="http://schema.openid.net/contact/email" required="true" />      	
+      </attribute-exchange>
+    </openid-login>
+      
     <logout logout-url="/resources/j_spring_security_logout" />
     <!-- Configure these elements to secure URIs in your application -->
     <intercept-url pattern="/resources/**" access="permitAll" />
     <intercept-url pattern="/login" access="permitAll" />
-    <intercept-url pattern="/**" access="isAuthenticated()" />
+    <intercept-url pattern="/**" access="isAuthenticated()" />    
   </http>
   
   <!-- Configure Authentication mechanism -->
+  <beans:bean id="customUserDetailsService" class="edu.dfci.cccb.gameon.security.service.DummyUserDetailsService"/>    
+  <beans:bean id="authenitcationEventLoggerListener" class="edu.dfci.cccb.gameon.security.log.AuthenitcationEventLoggerListener" />
+  <!-- beans:bean id="successHandler" class="edu.dfci.cccb.gameon.security.log.LogAuthenticationSuccessHandler"/-->
+  
   <authentication-manager alias="authenticationManager">
     <!-- SHA-256 values can be produced using 'echo -n your_desired_password 
       | sha256sum' (using normal *nix environments) -->
+    <authentication-provider user-service-ref="customUserDetailsService">
+      <password-encoder hash="sha-256" />      
+    </authentication-provider>
     <authentication-provider>
       <password-encoder hash="sha-256" />
       <user-service>
         <user name="gameon"
           password="8f347c17c1c55d72a07bbf82ea1c6e6b350aeb5036291d787d8fc8e49529e7b9"
-          authorities="ROLE_USER" />
+          authorities="ROLE_ADMIN" />
       </user-service>
     </authentication-provider>
   </authentication-manager>

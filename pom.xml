@@ -17,6 +17,29 @@
 		<spring-security.version>3.1.0.RELEASE</spring-security.version>
 		<jackson.version>2.2.2</jackson.version>
 	</properties>
+	
+	<profiles>
+	  <profile>
+	    <id>dev</id>
+	    <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+	    <properties>
+	      <database.url>jdbc:h2:file:~/game-on;DB_CLOSE_DELAY=-1</database.url>
+	      <web.xml>src/main/webapp/WEB-INF/web-dev.xml</web.xml>
+	      <logging.level>debug</logging.level>	      
+	    </properties>
+	  </profile>
+	  <profile>
+	    <id>prod</id>
+	    <properties>
+	      <database.url>jdbc:h2:file:/opt/cccb/cccbapps/work/game-on;DB_CLOSE_DELAY\=-1</database.url>
+	      <web.xml>src/main/webapp/WEB-INF/web.xml</web.xml>
+	      <logging.level>info</logging.level>	      
+	    </properties>
+	  </profile>
+	</profiles>
+		
 	<repositories>
 		<repository>
 			<id>spring-maven-release</id>
@@ -325,6 +348,11 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-openid</artifactId>
+			<version>${spring-security.version}</version>
+		</dependency>
 
 		<!-- Google Guava -->
 		<dependency>
@@ -342,7 +370,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>0.11.8</version>
 		</dependency>
 		<!-- Spring Roo -->
 		<!-- <dependency> <groupId>org.springframework.roo</groupId> <artifactId>spring-roo</artifactId> 
@@ -358,26 +385,6 @@
 			<version>2.2.2</version>
 		</dependency>
 	</dependencies>
-	
-	<profiles>
-	  <profile>
-	    <id>dev</id>
-	    <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-	    <properties>
-	      <database.url>jdbc:h2:file:~/game-on;DB_CLOSE_DELAY=-1</database.url>
-	      <web.xml>src/main/webapp/WEB-INF/web-dev.xml</web.xml>
-	    </properties>
-	  </profile>
-	  <profile>
-	    <id>prod</id>
-	    <properties>
-	      <database.url>jdbc:h2:file:/opt/cccb/cccbapps/work/game-on;DB_CLOSE_DELAY\=-1</database.url>
-	      <web.xml>src/main/webapp/WEB-INF/web.xml</web.xml>
-	    </properties>
-	  </profile>
-	</profiles>
 	
 	<build>
 	  <resources>
@@ -584,4 +591,13 @@
 		</pluginManagement>
 		
 	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>0.12.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

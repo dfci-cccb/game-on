@@ -19,9 +19,24 @@
       <param name="LevelMax" value="debug" />
     </filter>
   </appender>
+  <appender name="authlog-file" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="threshold" value="info" />
+    <param name="file" value="gameon-auth.log" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="[%p] : %m%n" />
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="info" />
+      <param name="LevelMax" value="info" />
+    </filter>
+  </appender>  
+  <logger name="edu.dfci.cccb.gameon.security.log">
+  	<level value="info"></level>
+  	<appender-ref ref="authlog-file"/>
+  </logger>
   <root>
-    <priority value="debug"></priority>
+    <priority value="${logging.level}"></priority>
     <appender-ref ref="stderr" />
-    <appender-ref ref="stdout" />
+    <appender-ref ref="stdout" />    
   </root>
 </log4j:configuration>
