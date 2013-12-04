@@ -27,7 +27,8 @@
 	    <properties>
 	      <database.url>jdbc:h2:file:~/game-on;DB_CLOSE_DELAY=-1</database.url>
 	      <web.xml>src/main/webapp/WEB-INF/web-dev.xml</web.xml>
-	      <logging.level>debug</logging.level>	      
+	      <logging.level>debug</logging.level>
+	      <authlog.file>gameon-auth.log</authlog.file>	      
 	    </properties>
 	  </profile>
 	  <profile>
@@ -35,7 +36,8 @@
 	    <properties>
 	      <database.url>jdbc:h2:file:/opt/cccb/cccbapps/work/game-on;DB_CLOSE_DELAY\=-1</database.url>
 	      <web.xml>src/main/webapp/WEB-INF/web.xml</web.xml>
-	      <logging.level>info</logging.level>	      
+	      <logging.level>info</logging.level>	  
+	      <authlog.file>${catalina.home}/logs/gameon-auth.log</authlog.file>    
 	    </properties>
 	  </profile>
 	</profiles>

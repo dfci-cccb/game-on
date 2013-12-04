@@ -21,7 +21,7 @@
   </appender>
   <appender name="authlog-file" class="org.apache.log4j.DailyRollingFileAppender">
     <param name="threshold" value="info" />
-    <param name="file" value="gameon-auth.log" />
+    <param name="file" value="${authlog.file}" />
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern" value="[%p] : %m%n" />
     </layout>
