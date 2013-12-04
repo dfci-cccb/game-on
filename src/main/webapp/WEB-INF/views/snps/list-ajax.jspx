@@ -25,7 +25,7 @@
 	
 	<util:panel title="List SNPs" id="ajax_id">
 	<c:if test="${iTotalRecords>0}">		
-		<input onclick="downloadPage()" type="button" value="Download" style="float:right;"/>
+		<input onclick="downloadButtonClick()" type="button" value="Download" style="float:right;"/>
 	</c:if>
 	<!-- 
 	<table id="l_edu_dfci_cccb_gameon_domain_Snp_ajax">
@@ -83,10 +83,25 @@
 		</p>
 	</util:panel>
 	<!-- button id="demo" onclick="doAjax()" title="Button">Get the time!</button-->
+	<div id="terms_of_use_dialog" title="Terms of Use">
+		<p>The sample size and precision of the data presented should preclude de-identification of any individual subject. However, in downloading these data, you undertake:</p>
+		<ul>
+    <li>not to attempt to de-identify individual subjects.</li>
+    <li>not to repost these data to a third party website.</li>
+		</ul>
+		<!-- 
+    <input type="button" id="agree_button" value="I agree with the terms above"/>
+    <input type="button" id="cancel_button" value="Cancel" onclick="javascript: $('#terms_of_use_dialog').dialog().close();"/>
+     -->  
+	</div>
 	
 	<script type="text/javascript">
+		function downloadButtonClick(){
+			//$( "#terms_of_use_dialog" ).dialog( "open" );
+			downloadPage();
+		}
 		function downloadPage(){
-			//window.location.href="/gameon/snps?download=page&amp;"+sCurAjaxSource.substr(sCurAjaxSource.indexOf("?") + 1);
+			//window.location.href="/gameon/snps?download=page&amp;"+sCurAjaxSource.substr(sCurAjaxSource.indexOf("?") + 1);			
 			window.location.href="/gameon/snps?download=page&amp;"+getCurrentTableFilterQueryString();
 		}
 		
@@ -95,7 +110,17 @@
 		}
 		
 		$(document).ready(function(){		 
-			 
+		
+			var oTermsOfUseDialog = $("#terms_of_use_dialog").dialog({ 
+				autoOpen: false,
+				modal: true,
+	      closeOnEscape: true,
+				buttons: {
+					"I agree with the terms above": function() { $(this).dialog("close"); downloadPage(); } ,
+				  "I decline": function() { $(this).dialog("close"); } 
+					}				
+				});
+			
 			var oTable = $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable({
 			        "bProcessing": true,
 			        "oLanguage": {"sProcessing": "Processing... please wait, this may take a minute."},

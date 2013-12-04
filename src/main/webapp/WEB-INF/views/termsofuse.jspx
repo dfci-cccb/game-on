@@ -1,0 +1,28 @@
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+    
+  <spring:message code="terms_of_use_title" var="terms_of_use_title" htmlEscape="false" />
+  <util:panel id="title" title="${terms_of_use_title }">
+    <c:if test="${not empty error}">
+      <div class="errors">
+        <p>
+          <c:out value="${error}" />
+        </p>
+      </div>
+    </c:if>
+    
+    <form id="termsofuse_form" method="post">
+	   <p>The sample size and precision of the data presented should preclude de-identification of any individual subject. However, in downloading these data, you undertake:</p>
+			<ul>
+	    <li>not to attempt to de-identify individual subjects.</li>
+	    <li>not to repost these data to a third party website.</li>
+		  </ul>
+		 <div id="termsofuse_checkbox_wrapper"><input type="checkbox" id="termsofuse_checkbox" name="accepted" value="true" />I agree with the terms above</div>		 
+	   <input type="submit" value="Accept" name="btnAccept"/>
+	   <input type="submit" value="Decline" name="btnDecline"/>	   
+		</form>	
+  </util:panel>
+    	
+</div>
+

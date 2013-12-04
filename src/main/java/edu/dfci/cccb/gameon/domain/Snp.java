@@ -40,7 +40,7 @@ public class Snp {
 
     private static final Logger log = Logger.getLogger(Snp.class);
 
-    private static final int MAXIMUM_QUERIES = 50000;
+    private static final int MAXIMUM_QUERIES = 500;
 
     private static final long DURATION = 1;
 

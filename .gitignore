@@ -5,3 +5,15 @@
 *.war
 *.ear
 /target
+/data
+
+# IDE Generated Files
+.project
+.classpath
+.settings/
+**.swp
+**.orig
+.springBeans
+
+# Logs
+gameon-auth.log*
