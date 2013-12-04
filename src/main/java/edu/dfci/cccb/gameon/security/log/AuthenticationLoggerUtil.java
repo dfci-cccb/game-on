@@ -10,8 +10,10 @@ import org.apache.log4j.Priority;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.openid.OpenIDAuthenticationToken;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
+@Component
 public class AuthenticationLoggerUtil {
 	
     private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(AuthenticationLoggerUtil.class);

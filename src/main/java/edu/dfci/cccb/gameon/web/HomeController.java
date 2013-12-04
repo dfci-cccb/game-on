@@ -14,11 +14,16 @@
  */
 package edu.dfci.cccb.gameon.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.NativeWebRequest;
 
+import edu.dfci.cccb.gameon.domain.termsofuse.TermsOfUseChecker;
+ 
 /**
  * @author levk
  * 
@@ -27,8 +32,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping ("/")
 public class HomeController {
 
+  @Autowired private TermsOfUseChecker termsOfUseCheck; 
+	
   @RequestMapping (method = RequestMethod.GET)
   public String home (Model uiModel) {
     return "redirect:/snps?find=ajax&amp;build=&amp;strand=&amp;NStudy=&amp;effectAllele=&amp;refAllele=";
+  }
+  
+  @RequestMapping (value="termsofuse", method = RequestMethod.GET)
+  public String termsOfUse(Model uiModel){	  
+	  return "termsofuse";
+  }
+  
+  @RequestMapping (value="termsofuse", method = RequestMethod.POST, params={"btnAccept"})
+  public String acceptTermsOfUse(NativeWebRequest request,  Model uiModel,
+		  @RequestParam(value="accepted", required=false) boolean isAccepted){
+	  if(!isAccepted){
+		  uiModel.addAttribute("error", "You must accept the Terms Of Use to proceed");
+		  return termsOfUse(uiModel);
+	  }
+	  
+	  termsOfUseCheck.setAccepted(isAccepted);
+	  return home(uiModel);
+  }
+  
+  @RequestMapping (value="termsofuse", method = RequestMethod.POST, params={"btnDecline"})
+  public String declinieTermsOfUse(){
+	  return "redirect:/resources/j_spring_security_logout";
   }
 }

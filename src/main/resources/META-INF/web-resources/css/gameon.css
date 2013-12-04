@@ -56,3 +56,9 @@ div.errors{
 #_title_admin_login_panel_id{
 	display: none;
 }
+#termsofuse_checkbox_wrapper{
+	margin-bottom: 0.7em;
+}
+#termsofuse_checkbox{
+	vertical-align: middle;
+}

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.openid.OpenIDAuthenticationToken;
@@ -18,9 +19,8 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 
 
 public class LogAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
-    private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LogAuthenticationSuccessHandler.class);
-	private static final AuthenticationLoggerUtil authLog = new AuthenticationLoggerUtil(); 
     
+	@Autowired private final AuthenticationLoggerUtil authLog = new AuthenticationLoggerUtil(); 
     
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request,

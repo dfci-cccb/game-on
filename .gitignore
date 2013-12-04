@@ -16,4 +16,4 @@
 .springBeans
 
 # Logs
-gameon-auth.log
+gameon-auth.log*

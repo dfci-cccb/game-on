@@ -97,7 +97,8 @@
 	
 	<script type="text/javascript">
 		function downloadButtonClick(){
-			$( "#terms_of_use_dialog" ).dialog( "open" );			
+			//$( "#terms_of_use_dialog" ).dialog( "open" );
+			downloadPage();
 		}
 		function downloadPage(){
 			//window.location.href="/gameon/snps?download=page&amp;"+sCurAjaxSource.substr(sCurAjaxSource.indexOf("?") + 1);			
