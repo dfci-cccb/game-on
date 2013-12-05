@@ -138,7 +138,9 @@
 			function findSnps(){
 					var oTable = $("#l_edu_dfci_cccb_gameon_domain_Snp").dataTable();					
 					var sAjaxSource="/gameon/snps?find=json&amp;"+getFilterQueryString();
-					oTable.fnReloadAjax(sAjaxSource);
+					var oSettings = oTable.fnSettings();
+					oSettings._iDisplayStart=0;
+					oTable.fnReloadAjax(sAjaxSource, oSettings, null, null);
 			}
 
 			function blurInternalLabel(){

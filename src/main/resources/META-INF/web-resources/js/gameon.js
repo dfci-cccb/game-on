@@ -10,7 +10,7 @@ function getFilterQueryString(){
 	sCoordinateUpper = isNaN(sCoordinateUpper) ? "" : sCoordinateUpper;
 	var sGeneInfo = $("#gene").val();
 	sGeneInfo = sGeneInfo.indexOf("Enter")>-1 ? "" : sGeneInfo;
-	var sAjaxSource="markerName="+sMarkerName+"&build="+sBuild+"&NStudy="+$("#nstudy").val()+"&chromosome="+$("#chromosome").val()+"&coordinateLower="+sCoordinateLower+"&coordinateUpper="+sCoordinateUpper+"&geneInfo="+sGeneInfo+"&iDisplayStart="+oSettings._iDisplayStart;
+	var sAjaxSource="markerName="+sMarkerName+"&build="+sBuild+"&NStudy="+$("#nstudy").val()+"&chromosome="+$("#chromosome").val()+"&coordinateLower="+sCoordinateLower+"&coordinateUpper="+sCoordinateUpper+"&geneInfo="+sGeneInfo;
 	return sAjaxSource;
 }
 
