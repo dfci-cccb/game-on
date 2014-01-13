@@ -183,10 +183,10 @@
 			<br />
 			<util:panel id="legend" title="Table Legend" openPane="false">
 	    	<h1>Table Legend</h1>
-				<ul>
+				<ul class="table-legend">
 				<c:forTokens items="${columnLabels}" delims="${'&#9999;'}" var="columnHeading" varStatus="num">
             <li>            	
-              <c:out value="${columnHeading}" /> - <c:out value="${columnHeaderDescriptions[num.count-1]}" />
+              <span class="table-legend-column-name"><c:out value="${columnHeading}" /></span> - <c:out value="${columnHeaderDescriptions[num.count-1]}" />
             </li>
         </c:forTokens>  				
 				</ul>

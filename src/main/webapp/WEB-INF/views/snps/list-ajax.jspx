@@ -10,18 +10,7 @@
 	<div id="msgid"></div>
 	<util:panel id="welcome" title="Welcome" openPane="true">
 		<h1>Welcome to the GAME-ON GWAS look-up tool!</h1>
-		<p>Here you can find association results between single nucleotide
-			polymorphisms (SNPs) and breast cancer risk. You can search for a
-			specific SNP, by gene or genetic region.</p>
-		<p>The association results are based on a meta-analysis of 12
-			breast cancer GWAS, including a total of 16,003 cases and 41,335
-			controls. The studies included are ABCFS, BBCS, DFBBCS, MARIE,
-			SASBAC, HEBCS, GC-HBOC, UK2, BPC3, BCFR and SardiNIA. Both estrogen
-			receptor positive (ER+) and estrogen receptor negative (ER-) cases
-			were included in these analysis. Subtype-specific results for ER- and
-			ER+ breast cancer will be posted in the future. All studies were
-			imputed to HapMap 2. If you have questions, please email us.</p>
-	</util:panel>
+		<p>Here you can find association results between single nucleotide polymorphisms (SNPs) and breast cancer risk. You can search for a specific SNP, by gene or genetic region.</p><p>The association results are based on a meta-analysis of 12 breast cancer GWAS (Table 1), including a total of 16,003 cases and 41,335 controls. The studies included are ABCFS, BBCS, DFBBCS, MARIE, SASBAC, HEBCS, GC-HBOC, UK2, BPC3, BCFR and SardiNIA. Both estrogen receptor positive (ER+) and estrogen receptor negative (ER-) cases were included in this analysis. Subtype-specific results for ER- and ER+ breast cancer will be posted in the future. All studies were imputed to HapMap 2. Standard fixed-effects meta-analysis was used and the standard errors were adjusted by the inflation factors. If you have questions, please email us at <a href="mailto:gameon.gwas@gmail.com">gameon.gwas@gmail.com</a></p></util:panel>
 	
 	<util:panel title="List SNPs" id="ajax_id">
 	<c:if test="${iTotalRecords>0}">		
@@ -60,35 +49,494 @@
         </table:table>
 	</util:panel>
 
-	<util:panel id="citations" title="Citations" openPane="false">
-		<h1>Citations</h1>
-		<p>If you use this resource in a publication, please cite
-			http://gameon.dfci.harvard.edu and acknowledge DRIVE, funded by NCI,
-			as the coordinator for assembling the data and generating this
-			website.</p>
+	<util:panel id="reference" title="Reference" openPane="false">
+		<p>If you use this resource in a publication, please cite http://gameon.dfci.harvard.edu and acknowledge DRIVE, funded by NCI Grant number U19 CA148065, as the coordinator for assembling the data and generating this website.</p>
+		<h1>References for the meta-analysis</h1>
+		<ul class="no-bullets-list">
+		<li>
+			Ghoussaini M et al (2012). Genome-wide association analysis
+			identifies three new breast cancer susceptibility loci. Nat Genet
+			44:312-8.
+		</li><li>
+			Michailidou K et al (2013). Large-scale genotyping
+			identifies 41 new loci associated with breast cancer risk. Nat Genet
+			45(4):353-61, 361e1-2 
+		</li><li>
+			Siddiq A et al (2012). A meta-analysis
+			of genome-wide association studies of breast cancer identifies two
+			novel susceptibility loci at 6q14 and 20q11. Hum Mol Genet
+			21:5373-5384.
+		</li><li>
+			Garcia-Closas M et al (2013). Genome-wide
+			association studies identify four ER negative-specific breast cancer
+			risk loci. Nat Genet 45(4):392-8, 398e1-2.
+		</li>
+		</ul>
+		<span class="table-label">
+		<span class="table-label-name">Table 1.</span> <span class="table-label-description">Breast Cancer GWAS studies included in the meta-analysis.</span>
+		</span> 		
+<table >
+        <tr valign="bottom">
+            <th>Study</th>
+            <th>Country</th>
+
+            <th>Case Ascertainment</th>
+
+            <th>Control Ascertainment</th>
+
+            <th>Genotyping platform</th>
+
+            <th>Cases</th>
+
+            <th>Controls</th>
+
+            <th>Contact Principal Investigator</th>
+
+            <th>Reference</th>
+        </tr>
+
+        <tr valign="bottom">
+            <td>ABCFS/kConFab</td>
+
+            <td>Australia</td>
+
+            <td>Recruitment through cancer registries in Victoria and New
+                South Wales</td>
+
+            <td>Recruitment from the electoral rolls in Melbourne and Sydney
+                matched to cases by age in-5 year categories</td>
+
+            <td>Illumina 610k</td>
+
+            <td>282</td>
+
+            <td>285</td>
+
+            <td>John Hopper</td>
+
+            <td>1</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>BBCS</td>
+
+            <td>UK</td>
+
+            <td>Recruitment through cancer registries and clinics in the UK,
+                predominantly bilateral cases</td>
+
+            <td>WTCCC2: 1958 Birth Cohort + UK National Blood Service</td>
+
+            <td>Illumina 370k (cases) Illumina 1.2M (controls)</td>
+
+            <td>1,609</td>
+
+            <td>5,190</td>
+
+            <td>Julian Peto</td>
+
+            <td>2</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>GC-HBOC</td>
+
+            <td>Germany</td>
+
+            <td>BRCA1/2 mutation negative cases from University Clinics in
+                Cologne and Munich</td>
+
+            <td>KORA (Cooperative Health Research in the Region
+                Augsburg)</td>
+
+            <td>Affymetrix 5.0k (cases) Affymetrix 6.0k (controls)</td>
+
+            <td>634</td>
+
+            <td>477</td>
+
+            <td>AlfonsMeindl</td>
+
+            <td>3</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>MARIE</td>
+
+            <td>Germany</td>
+
+            <td>Random sample of cases from the MARIE study, but restricted
+                to ductal and lobular carcinomas and oversampled for lobular
+                (about 2:1)</td>
+
+            <td>KORA (Cooperative Health Research in the Region
+                Augsburg)</td>
+
+            <td>Illumina 370k (cases) Illumina 550k (controls)</td>
+
+            <td>708</td>
+
+            <td>470</td>
+
+            <td>Jenny Chang-Claude</td>
+
+            <td>4</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>HEBCS</td>
+
+            <td>Finland</td>
+
+            <td>Unselected cases plus additional familial cases from
+                Helsinki University Central Hospital</td>
+
+            <td>Population Controls from from the NordicDB, a Nordic pool
+                and portal for genome-wide control data</td>
+
+            <td>llumina 550k + 610k (cases) Illumina 370k (controls)</td>
+
+            <td>810</td>
+
+            <td>1,012</td>
+
+            <td>HeliNevanlinna</td>
+
+            <td>5, 6</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>SASBAC</td>
+
+            <td>Sweden</td>
+
+            <td>Population- based case control study of postmenopausal
+                women</td>
+
+            <td>Population- based controls frequency matched by age to
+                cases</td>
+
+            <td>Illumina 317k+240k (cases) Illumina 550k (controls)</td>
+
+            <td>790</td>
+
+            <td>756</td>
+
+            <td>Per Hall</td>
+
+            <td>5</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>UK2</td>
+
+            <td>UK</td>
+
+            <td>UK cancer genetics clinics + oncology clinics</td>
+
+            <td>WTCCC2: 1958 Birth Cohort + UK National Blood Service</td>
+
+            <td>Illumina 670k (cases) Illumina 1.2M (controls)</td>
+
+            <td>3,628</td>
+
+            <td>5,190</td>
+
+            <td>Douglas Easton</td>
+
+            <td>7</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td >DFBBS</td>
+
+            <td>Netherlands</td>
+
+            <td>BRCA1/2 mutation negative familial bilateral breast cancer
+                patients selected from five clinical genetics centers; Erasmus
+                University Medical Center/Daniel den Hoed, The Netherlands
+                Cancer Institute, Leiden University Medical Center, University
+                Medical Center Utrecht, and VU University Medical Center.</td>
+
+            <td>Controls were from the Rotterdam study, and are 55 years or
+                older at the time of inclusion. For this study females were
+                selected and breast cancer cases were excluded.</td>
+
+            <td>Illumina 610k (cases) Illumina 550k (controls)</td>
+
+            <td>464</td>
+
+            <td>3,255</td>
+
+            <td>Quentin Waisfisz</td>
+
+            <td>8</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>BPC3</td>
+
+            <td>US/Europe</td>
+
+            <td>Estrogen Receptor negative cases from population based
+                cohorts within the Breast and Prostate cancer cohort consortium
+                (BPC3)</td>
+
+            <td>Individually matched within cohorts in BPC3</td>
+
+            <td>Illumina 660k+550K+317k</td>
+
+            <td>2,188</td>
+
+            <td>25,519</td>
+
+            <td>Peter Kraft</td>
+
+            <td>9</td>
+        </tr>
+
+        <tr>
+            <td >BCFR</td>
+
+            <td>US/Europe/Australia</td>
+
+            <td>Population-based subjects were recruited from eight sites,
+                some of which oversampled cases with a personal or family
+                history. Eligible cases were non-Hispanic White women diagnosed
+                with invasive breast cancer when 51 years or younger and not
+                known to carry pathogenic mutations in BRCA1 or BRCA2.</td>
+
+            <td>Eligible controls were non-hispanic white women aged 20-51
+                years without a history of breast cancer, who were identified
+                largely by random-digit dialing.</td>
+
+            <td>Illumina 610k + Cyto 12)</td>
+
+            <td>3,523</td>
+
+            <td>2,702</td>
+
+            <td>Habib Ahsan</td>
+
+            <td>10</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>SardiNIA</td>
+
+            <td>Italy</td>
+
+            <td></td>
+
+            <td><br /></td>
+
+            <td>Affymetrix 500k (cases) Affymetrix 6.0k (controls)</td>
+
+            <td>1,367</td>
+
+            <td>1,659</td>
+
+            <td>Laura Crisponi</td>
+
+            <td><br /></td>
+        </tr>    
+        <tr valign="bottom">
+            <td>MARIE</td>
+
+            <td>Germany</td>
+
+            <td>Random sample of cases from the MARIE study, but restricted
+                to ductal and lobular carcinomas and oversampled for lobular
+                (about 2:1)</td>
+
+            <td>KORA (Cooperative Health Research in the Region
+                Augsburg)</td>
+
+            <td>Illumina 370k (cases) Illumina 550k (controls)</td>
+
+            <td>708</td>
+
+            <td>470</td>
+
+            <td>Jenny Chang-Claude</td>
+
+            <td>4</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>HEBCS</td>
+
+            <td>Finland</td>
+
+            <td>Unselected cases plus additional familial cases from
+                Helsinki University Central Hospital</td>
+
+            <td>Population Controls from from the NordicDB, a Nordic pool
+                and portal for genome-wide control data</td>
+
+            <td>llumina 550k + 610k (cases) Illumina 370k (controls)</td>
+
+            <td>810</td>
+
+            <td>1,012</td>
+
+            <td>HeliNevanlinna</td>
+
+            <td>5, 6</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>SASBAC</td>
+
+            <td>Sweden</td>
+
+            <td>Population- based case control study of postmenopausal
+                women</td>
+
+            <td>Population- based controls frequency matched by age to
+                cases</td>
+
+            <td>Illumina 317k+240k (cases) Illumina 550k (controls)</td>
+
+            <td>790</td>
+
+            <td>756</td>
+
+            <td>Per Hall</td>
+
+            <td>5</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>UK2</td>
+
+            <td>UK</td>
+
+            <td>UK cancer genetics clinics + oncology clinics</td>
+
+            <td>WTCCC2: 1958 Birth Cohort + UK National Blood Service</td>
+
+            <td>Illumina 670k (cases) Illumina 1.2M (controls)</td>
+
+            <td>3,628</td>
+
+            <td>5,190</td>
+
+            <td>Douglas Easton</td>
+
+            <td>7</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>DFBBS</td>
+
+            <td>Netherlands</td>
+
+            <td>BRCA1/2 mutation negative familial bilateral breast cancer
+                patients selected from five clinical genetics centers; Erasmus
+                University Medical Center/Daniel den Hoed, The Netherlands
+                Cancer Institute, Leiden University Medical Center, University
+                Medical Center Utrecht, and VU University Medical Center.</td>
+
+            <td>Controls were from the Rotterdam study, and are 55 years or
+                older at the time of inclusion. For this study females were
+                selected and breast cancer cases were excluded.</td>
+
+            <td>Illumina 610k (cases) Illumina 550k (controls)</td>
+
+            <td>464</td>
+
+            <td>3,255</td>
+
+            <td>Quentin Waisfisz</td>
+
+            <td>8</td>
+        </tr>
+
+        <tr valign="bottom">
+            <td>BPC3</td>
+
+            <td>US/Europe</td>
+
+            <td>Estrogen Receptor negative cases from population based
+                cohorts within the Breast and Prostate cancer cohort consortium
+                (BPC3)</td>
+
+            <td>Individually matched within cohorts in BPC3</td>
+
+            <td>Illumina 660k+550K+317k</td>
+
+            <td>2,188</td>
+
+            <td>25,519</td>
+
+            <td>Peter Kraft</td>
+
+            <td>9</td>
+        </tr>
+
+        <tr>
+            <td>BCFR</td>
+
+            <td>US/Europe/Australia</td>
+
+            <td>Population-based subjects were recruited from eight sites,
+                some of which oversampled cases with a personal or family
+                history. Eligible cases were non-Hispanic White women diagnosed
+                with invasive breast cancer when 51 years or younger and not
+                known to carry pathogenic mutations in BRCA1 or BRCA2.</td>
+
+            <td>Eligible controls were non-hispanic white women aged 20-51
+                years without a history of breast cancer, who were identified
+                largely by random-digit dialing.</td>
+
+            <td>Illumina 610k + Cyto 12)</td>
+
+            <td>3,523</td>
+
+            <td>2,702</td>
+
+            <td>Habib Ahsan</td>
+
+            <td>10</td>
+        </tr>
+
+        <tr>
+            <td>SardiNIA</td>
+            <td>Italy</td>
+            <td></td>
+            <td><br /></td>
+            <td>Affymetrix 500k (cases) Affymetrix 6.0k (controls)</td>
+            <td>1,367</td>
+            <td>1,659</td>
+            <td>Laura Crisponi</td>
+            <td></td>
+        </tr>
+
+    </table>
 	</util:panel>
 	<util:panel id="references" title="References" openPane="true">
 		<h1>References</h1>
-		<p>
-			Ghoussaini M et al (2012). Genome-wide association analysis
-			identifies three new breast cancer susceptibility loci. Nat Genet
-			44:312-8. <br />Michailidou K et al (2013). Large-scale genotyping
-			identifies 41 new loci associated with breast cancer risk. Nat Genet
-			45(4):353-61, 361e1-2 <br />Siddiq A et al (2012). A meta-analysis
-			of genome-wide association studies of breast cancer identifies two
-			novel susceptibility loci at 6q14 and 20q11. Hum Mol Genet
-			21:5373-5384. <br />Garcia-Closas M et al (2013). Genome-wide
-			association studies identify four ER negative-specific breast cancer
-			risk loci. Nat Genet 45(4):392-8, 398e1-2.
-		</p>
+		<ol>
+		<li>Dite,G.S. et al. J Natl Cancer Inst 95, 448-457 (2003). </li>
+		<li>Fletcher,O. et al. J Natl Cancer Inst 98, 1014-1018 (2006).</li>
+		<li>Frank,B. et al. Carcinogenesis 27, 606-609 (2006).</li>
+		<li>Flesch-Janys,D. et al. Int J Cancer 123, 933-941 (2008).</li>
+		<li>Li,J. et al. Breast Cancer Res Treat 126, 717-727 (2010).</li>
+		<li>Leu,M. et al. Eur J Hum Genet 18, 1322-1326 (2010).</li>
+		<li>Turnbull,C. et al. Nat Genet 42, 504-507 (2010).</li>
+		<li>Hofman,A. et al. Eur J Epidemiol 24, 553-572 (2009).</li>
+		<li>Siddiq, A, et al. Hum Mol Genet 15;21(24):5373-84 (2012)</li>
+		<li>Ahsan et al, In press CEBP (2014)</li>
+		</ol>
 	</util:panel>
 	<!-- button id="demo" onclick="doAjax()" title="Button">Get the time!</button-->
 	<div id="terms_of_use_dialog" title="Terms of Use">
-		<p>The sample size and precision of the data presented should preclude de-identification of any individual subject. However, in downloading these data, you undertake:</p>
-		<ul>
+		<p>The sample size and precision of the data presented should preclude de-identification of any individual subject. However, in downloading these data, you undertake:<ul>
     <li>not to attempt to de-identify individual subjects.</li>
     <li>not to repost these data to a third party website.</li>
 		</ul>
+		</p>
 		<!-- 
     <input type="button" id="agree_button" value="I agree with the terms above"/>
     <input type="button" id="cancel_button" value="Cancel" onclick="javascript: $('#terms_of_use_dialog').dialog().close();"/>
