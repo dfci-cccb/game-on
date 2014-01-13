@@ -62,3 +62,20 @@ div.errors{
 #termsofuse_checkbox{
 	vertical-align: middle;
 }
+ul.no-bullets-list{
+	list-style-type: none;
+	padding: 0;		
+}
+.table-label{
+	font-size: 1em;
+}
+.table-label-name{
+	font-weight: bold;
+	padding-right: .5em;	
+}
+ul.table-legend{
+	list-style-type: none;
+}
+.table-legend-column-name{
+	font-weight: bold;
+}
