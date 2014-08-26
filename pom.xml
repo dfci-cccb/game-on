@@ -77,6 +77,13 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
+      <!-- SuperCsv -->
+    
+      <dependency>
+        <groupId>net.sf.supercsv</groupId>
+        <artifactId>super-csv</artifactId>
+        <version>2.1.0</version>
+      </dependency>
 		<!-- General dependencies for standard applications -->
 		<dependency>
 			<groupId>junit</groupId>
