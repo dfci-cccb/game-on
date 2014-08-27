@@ -162,7 +162,17 @@ public class Snp {
                 "Or",
                 "LCi",
                 "UCi",
-                "PValue"),
+                "PValue",
+                "NStudyErneg",
+                "EffectAlleleErneg",
+                "RefAlleleErneg",
+                "BetaValueErneg",
+                "OrValueErneg",
+                "SeValueErneg",
+                "LCiValueErneg",
+                "UCiValueErneg",
+                "PValueErneg"
+                ),
     			"\t") + "\n").getBytes();
     }
     public byte[] toDownload(){
@@ -173,6 +183,11 @@ public class Snp {
     			this.getRefAllele (), this.getEafUkValue (),
                 this.getBetavalue (), this.getSeValue (),
                 this.getOrValue (), this.getLCiValue (),
-                this.getUCiValue (), this.getPValue ()), "\t") + "\n").getBytes();
+                this.getUCiValue (), this.getPValue (),
+                this.getNStudyErneg(), this.getEffectAlleleErneg(),
+                this.getRefAlleleErneg(), this.getBetavalueErneg(),
+                this.getOrValueErneg(), this.getSeValueErneg(),
+                this.getLCiValueErneg(), this.getUCiValueErneg(),
+                this.getPValueErneg(), "\t")) + "\n").getBytes();
     }
 }
