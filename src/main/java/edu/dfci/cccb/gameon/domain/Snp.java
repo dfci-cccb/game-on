@@ -76,7 +76,7 @@ public class Snp {
             put("chromosome", "o.chromosome LIKE LOWER(:%s)");
             put("coordinateUpper", "o.coordinate <= CONVERT(:%s, BIGINT)");
             put("coordinateLower", "o.coordinate >= CONVERT(:%s, BIGINT)");
-            put("geneInfo", "LOWER(o.geneInfo) LIKE LOWER(:%s)");
+            put("geneInfo", "o.geneInfo LIKE UPPER(:%s)");
         }
         /*
         public String get(Object key) {
