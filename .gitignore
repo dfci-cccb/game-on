@@ -17,3 +17,8 @@
 
 # Logs
 gameon-auth.log*
+
+# Databases
+*.h2.db
+*.lock.db
+*.trace.db

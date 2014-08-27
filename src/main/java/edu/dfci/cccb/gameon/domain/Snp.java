@@ -76,7 +76,7 @@ public class Snp {
             put("chromosome", "o.chromosome LIKE LOWER(:%s)");
             put("coordinateUpper", "o.coordinate <= CONVERT(:%s, BIGINT)");
             put("coordinateLower", "o.coordinate >= CONVERT(:%s, BIGINT)");
-            put("geneInfo", "LOWER(o.geneInfo) LIKE LOWER(:%s)");
+            put("geneInfo", "o.geneInfo LIKE UPPER(:%s)");
         }
         /*
         public String get(Object key) {
@@ -162,7 +162,17 @@ public class Snp {
                 "Or",
                 "LCi",
                 "UCi",
-                "PValue"),
+                "PValue",
+                "NStudyErneg",
+                "EffectAlleleErneg",
+                "RefAlleleErneg",
+                "BetaValueErneg",
+                "OrValueErneg",
+                "SeValueErneg",
+                "LCiValueErneg",
+                "UCiValueErneg",
+                "PValueErneg"
+                ),
     			"\t") + "\n").getBytes();
     }
     public byte[] toDownload(){
@@ -173,6 +183,11 @@ public class Snp {
     			this.getRefAllele (), this.getEafUkValue (),
                 this.getBetavalue (), this.getSeValue (),
                 this.getOrValue (), this.getLCiValue (),
-                this.getUCiValue (), this.getPValue ()), "\t") + "\n").getBytes();
+                this.getUCiValue (), this.getPValue (),
+                this.getNStudyErneg(), this.getEffectAlleleErneg(),
+                this.getRefAlleleErneg(), this.getBetavalueErneg(),
+                this.getOrValueErneg(), this.getSeValueErneg(),
+                this.getLCiValueErneg(), this.getUCiValueErneg(),
+                this.getPValueErneg(), "\t")) + "\n").getBytes();
     }
 }
