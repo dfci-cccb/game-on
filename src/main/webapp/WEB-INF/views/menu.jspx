@@ -27,7 +27,7 @@
                     <input name="size" type="hidden" value="${param['size']}"/>
                     <input name="markerName" id="markerName" type="text" value="${empty param['markerName'] ? 'Enter Marker Names' : param['markerName']}" internalLabel="Enter Marker Names"/>
                     <br/>
-                    <select id="build" name="build">
+                    <!-- select id="build" name="build">
                         <option value="">Any Build</option>
                         <c:forEach items="${builds}" var="build">
                             <c:choose>
@@ -40,7 +40,7 @@
                             </c:choose>
                         </c:forEach>
                     </select>
-                    <br/>
+                    <br/ -->
                     <!--select id="strand" name="strand">
                         <option value="">Any Strand</option>
                         <c:forEach items="${strands}" var="strand">
@@ -55,7 +55,7 @@
                         </c:forEach>
                     </select>
                     <br/-->
-                    <select id="nstudy" name="NStudy">
+                    <!-- select id="nstudy" name="NStudy">
                         <option value="">Any NStudy</option>
                         <c:forEach items="${nstudies}" var="nstudy">
                             <c:choose>
@@ -69,7 +69,7 @@
                         </c:forEach>
                     </select>
                     
-                    <br/>
+                    <br/-->
                     <!--
                     <select id="effectAllele" name="effectAllele">
                         <option value="">Any Effect Allele</option>
