@@ -53,11 +53,41 @@ privileged aspect Snp_Roo_DbManaged {
     @Column(name = "STRAND", length = 255)
     private String Snp.strand;
     
+    @Column(name = "U_CI_VALUE")
+    private Double Snp.uCiValue;
+    
+    @Column(name = "GENE_SYMBOL", length = 255)
+    private String Snp.geneSymbol;
+    
     @Column(name = "GENE_INFO", length = 255)
     private String Snp.geneInfo;
     
-    @Column(name = "U_CI_VALUE")
-    private Double Snp.uCiValue;
+    @Column(name = "N_STUDY_ERNEG", length = 255)
+    private String Snp.nStudyErneg;
+    
+    @Column(name = "EFFECT_ALLELE_ERNEG", length = 255)
+    private String Snp.effectAlleleErneg;
+    
+    @Column(name = "REF_ALLELE_ERNEG", length = 255)
+    private String Snp.refAlleleErneg;
+    
+    @Column(name = "BETAVALUE_ERNEG")
+    private Double Snp.betavalueErneg;
+    
+    @Column(name = "SE_VALUE_ERNEG")
+    private Double Snp.seValueErneg;
+    
+    @Column(name = "OR_VALUE_ERNEG")
+    private Double Snp.orValueErneg;
+    
+    @Column(name = "L_CI_VALUE_ERNEG")
+    private Double Snp.lCiValueErneg;
+    
+    @Column(name = "U_CI_VALUE_ERNEG")
+    private Double Snp.uCiValueErneg;
+    
+    @Column(name = "P_VALUE_ERNEG")
+    private Double Snp.pValueErneg;
     
     public Double Snp.getBetavalue() {
         return betavalue;
@@ -179,6 +209,22 @@ privileged aspect Snp_Roo_DbManaged {
         this.strand = strand;
     }
     
+    public Double Snp.getUCiValue() {
+        return uCiValue;
+    }
+    
+    public void Snp.setUCiValue(Double uCiValue) {
+        this.uCiValue = uCiValue;
+    }
+    
+    public String Snp.getGeneSymbol() {
+        return geneSymbol;
+    }
+    
+    public void Snp.setGeneSymbol(String geneSymbol) {
+        this.geneSymbol = geneSymbol;
+    }
+    
     public String Snp.getGeneInfo() {
         return geneInfo;
     }
@@ -187,12 +233,76 @@ privileged aspect Snp_Roo_DbManaged {
         this.geneInfo = geneInfo;
     }
     
-    public Double Snp.getUCiValue() {
-        return uCiValue;
+    public String Snp.getNStudyErneg() {
+        return nStudyErneg;
     }
     
-    public void Snp.setUCiValue(Double uCiValue) {
-        this.uCiValue = uCiValue;
+    public void Snp.setNStudyErneg(String nStudyErneg) {
+        this.nStudyErneg = nStudyErneg;
+    }
+    
+    public String Snp.getEffectAlleleErneg() {
+        return effectAlleleErneg;
+    }
+    
+    public void Snp.setEffectAlleleErneg(String effectAlleleErneg) {
+        this.effectAlleleErneg = effectAlleleErneg;
+    }
+    
+    public String Snp.getRefAlleleErneg() {
+        return refAlleleErneg;
+    }
+    
+    public void Snp.setRefAlleleErneg(String refAlleleErneg) {
+        this.refAlleleErneg = refAlleleErneg;
+    }
+    
+    public Double Snp.getBetavalueErneg() {
+        return betavalueErneg;
+    }
+    
+    public void Snp.setBetavalueErneg(Double betavalueErneg) {
+        this.betavalueErneg = betavalueErneg;
+    }
+    
+    public Double Snp.getSeValueErneg() {
+        return seValueErneg;
+    }
+    
+    public void Snp.setSeValueErneg(Double seValueErneg) {
+        this.seValueErneg = seValueErneg;
+    }
+    
+    public Double Snp.getOrValueErneg() {
+        return orValueErneg;
+    }
+    
+    public void Snp.setOrValueErneg(Double orValueErneg) {
+        this.orValueErneg = orValueErneg;
+    }
+    
+    public Double Snp.getLCiValueErneg() {
+        return lCiValueErneg;
+    }
+    
+    public void Snp.setLCiValueErneg(Double lCiValueErneg) {
+        this.lCiValueErneg = lCiValueErneg;
+    }
+    
+    public Double Snp.getUCiValueErneg() {
+        return uCiValueErneg;
+    }
+    
+    public void Snp.setUCiValueErneg(Double uCiValueErneg) {
+        this.uCiValueErneg = uCiValueErneg;
+    }
+    
+    public Double Snp.getPValueErneg() {
+        return pValueErneg;
+    }
+    
+    public void Snp.setPValueErneg(Double pValueErneg) {
+        this.pValueErneg = pValueErneg;
     }
     
 }

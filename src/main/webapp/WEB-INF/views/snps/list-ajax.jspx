@@ -46,6 +46,15 @@
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_lCiValue" property="LCiValue" z=""/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_uCiValue" property="UCiValue" z=""/>
             <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_pValue" property="PValue" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_nStudyErneg" property="nStudyErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_effectAlleleErneg" property="EffectAlleleErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_refAlleleErneg" property="RefAlleleErneg" z=""/>            
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_betavalueErneg" property="BetaValueErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_orValueErneg" property="orValueErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_seValueErneg" property="seValueErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_lCiValueErneg" property="lCiValueErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_uCiValueErneg" property="uCiValueErneg" z=""/>
+            <table:column id="c_edu_dfci_cccb_gameon_domain_Snp_pValueErneg" property="pValueErneg" z=""/>                        
         </table:table>
 	</util:panel>
 
@@ -644,7 +653,40 @@
 			                    	  "mRender": function ( data, type, full ) {
 				                          return roundForDisplay(data);
 				                      	}
-			                      }
+			                      },
+			                      { "mData": "nstudyErneg" },
+			                      { "mData": "effectAlleleErneg" },
+			                      { "mData": "refAlleleErneg" },
+			                      { "mData": "betavalueErneg", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "orValueErneg", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "seValueErneg", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "lciValueErneg", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "uciValueErneg", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      },
+			                      { "mData": "pvalueErneg", 
+			                    	  "mRender": function ( data, type, full ) {
+				                          return roundForDisplay(data);
+				                      	}
+			                      }			                      
 			                  ]
 					});
 		});		
